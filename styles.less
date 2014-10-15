@@ -1,0 +1,246 @@
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed.
+ *
+ * If you are unfamiliar with LESS, you can read more about it here:
+ * http://www.lesscss.org
+ */
+
+
+// WINDOW
+
+// Background should be black
+.workspace,
+.editor:not(.mini) .workspace {
+  background: #000;
+}
+
+
+// TABS
+
+// Hide tab icons
+.unity-mac-old .tab-bar .title:before {
+  display: none;
+}
+
+// Add space between tab bar and editor
+.editor:not(.mini) .scroll-view {
+  padding: 6px 0 0 8px;
+}
+
+// Hide tab bar if no tabs are present
+.unity-mac-old .tab-bar {
+  height: auto;
+}
+
+
+// GUTTER
+
+// Improve gutter appearance
+.editor:not(.mini) {
+  .gutter {
+    background-color: #ddd;
+    padding-top: 6px;
+    .line-number {
+       color: #888;
+       opacity: 1;
+       &.cursor-line-no-selection {
+         color: #888;
+         opacity: 1;
+       }
+       &.cursor-line {
+         color: #888;
+         opacity: 1;
+       }
+     }
+  }
+}
+
+
+// TREE VIEW
+
+// Show tree view icons in monochrome
+@import "packages/file-icons/features/force-show-icons";
+@import "packages/file-icons/features/no-colours";
+
+// Tweak background color
+.tree-view-resizer {
+  background: #ddd;
+}
+
+// Remove top padding
+.tree-view {
+  margin-top: -1px;
+  padding-top: 0px;
+}
+
+// Directories should be bold
+.tree-view .header {
+  font-weight: bold;
+}
+
+// Add space between project root and entries
+.tree-view .entries {
+  padding-top: 9px;
+}
+.tree-view .entries .entries,
+.tree-view .entries .entries .entries,
+.tree-view .entries .entries .entries .entries {
+  padding-top: 6px;
+}
+
+// Turn project root into header
+.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item::before {
+  content: '';
+  margin: 0 0 0 -10px;
+}
+.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
+  pointer-events: none;
+}
+.tree-view .project-root.selected::before,
+.tree-view:focus .project-root.selected::before {
+  background-image: none;
+}
+
+// Reduce left margins
+.tree-view .directory .entries {
+  margin-left: 6px;
+}
+
+// Decrease list item spacing
+.tree-view .list-item,
+.tree-view .selected::before {
+  line-height: 21px !important;
+}
+.tree-view .expanded .header + .entries li:first-child {
+  margin-top: -7px;
+}
+
+// Tweak list item selected state colors
+.tree-view .selected::before,
+.tree-view:focus .selected::before {
+  box-shadow: none;
+}
+.tree-view .selected::before {
+  background-image: linear-gradient(#bbb, #bbb);
+}
+.tree-view:focus .selected::before {
+  background-image: linear-gradient(#2C84CB, #2C84CB);
+}
+
+// Hide file directory icons
+.icon-file-directory::before {
+  content: none;
+}
+
+// Show repo icon
+.tree-view .icon-file-directory:first::before,
+.tree-view .icon-repo:first::before {
+  color: #777 !important;
+  content: "\f0a3";
+}
+
+// Tweak repo icon color when selected
+.tree-view .entry.selected > .header > .name::before,
+.tree-view .entry.selected > .name::before {
+  color: #777 !important;
+}
+
+// Add padding to repo header
+.icon-repo {
+  color: #555 !important;
+  height: 18px;
+  line-height: 16px !important;
+  text-shadow: none !important;
+}
+
+// Move README files to the top of tree view
+.tree-view .entry .name[data-name="README.md"] {
+  border-bottom: 1px solid #ccc !important;
+  position: absolute;
+  text-align: right;
+  padding: 1px 10px 0 0;
+  height: 24px;
+}
+
+// Hide README file icon
+.tree-view .entry .icon[data-name="README.md"]::before {
+  display: none;
+}
+
+// Disable selected state for README
+.tree-view:focus .entry .name[data-name="README.md"] {
+  color: #555;
+  text-shadow: none;
+}
+.tree-view .entries li.list-nested-item:nth-child(1) ~ li.list-item:last-child::before {
+  // Hide selected state of README in top level directory
+  // assuming repo contains at least one directory
+  background: none !important;
+  background-image: none !important;
+}
+
+// Reset selected state for all other nested directories
+.tree-view .entries .entries li.list-item.selected:last-child::before,
+.tree-view .entries .entries .entries li.list-item.selected:last-child::before,
+.tree-view .entries .entries .entries .entries li.list-item.selected:last-child::before,
+.tree-view .entries .entries .entries .entries .entries li.list-item.selected:last-child::before,
+.tree-view .entries .entries .entries .entries .entries .entries li.list-item.selected:last-child::before {
+  background-image: linear-gradient(#bbb, #bbb) !important;
+}
+.tree-view:focus .entries .entries li.list-item.selected:last-child::before,
+.tree-view:focus .entries .entries .entries li.list-item.selected:last-child::before,
+.tree-view:focus .entries .entries .entries .entries li.list-item.selected:last-child::before,
+.tree-view:focus .entries .entries .entries .entries .entries li.list-item.selected:last-child::before,
+.tree-view:focus .entries .entries .entries .entries .entries .entries li.list-item.selected:last-child::before {
+  background-image: linear-gradient(#2C84CB, #2C84CB) !important;
+}
+
+
+// STATUS BAR
+
+// Tweak background color
+.tool-panel.panel-bottom {
+  background-color: #ddd;
+}
+
+
+// BACKGROUND APPEARANCE
+
+// Improve appearance when app is in background
+.unity-mac-old.is-blurred {
+  .tab-bar {
+    background-color: #ddd;
+    .tab.active {
+      -webkit-border-image: none;
+      background-color: #ddd;
+      border: 1px solid #999 !important;
+      height: 24px;
+      border-bottom-width: 1px;
+      .title {
+        margin-top: -1px;
+      }
+    }
+  }
+  .editor:not(.mini) {
+    .gutter {
+      background-color: #ddd;
+    }
+  }
+  .tree-view-resizer {
+    background: #ddd;
+  }
+  .tree-view .selected::before {
+    background-image: linear-gradient(#ddd, #ddd);
+    box-shadow: none;
+  }
+  .tree-view:focus .selected::before {
+    background-image: linear-gradient(#ddd, #ddd);
+    box-shadow: none;
+  }
+  .tool-panel.panel-bottom {
+    background-color: #ddd;
+  }
+}

@@ -1,0 +1,8 @@
+[user]
+	email = patrick@mokolabs.com
+	name = Patrick Crowley
+[alias]
+	sync = !git pull && git submodule update --init --recursive
+[heroku]
+[heroku]
+	account = mokolabs
