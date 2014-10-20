@@ -6,20 +6,14 @@ export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
 export DISPLAY=:0.0
 export PS1="\h:\w $ "
 
-# Unhide ~/Library
-/usr/bin/chflags nohidden ~/Library
-
 # Open gems with TextMate
-export GEM_OPEN_EDITOR=mate
+export GEM_OPEN_EDITOR=atom
 
 # Edit with nano (because vim blows)
 export EDITOR=nano
 
 # Use rake without stupid bundle rake prefix
 rake() { if [ -e ./Gemfile.lock ]; then bundle exec rake "$@"; else /usr/bin/env rake "$@"; fi; }
-
-# Node path
-export NODE_PATH="/usr/local/lib/node"
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -34,6 +28,9 @@ export PATH="/usr/local/heroku/bin:$PATH"
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
+
+# Disable Dropbox icons
+pluginkit -e ignore -i com.getdropbox.dropbox.garcon
 
 # Default to ~/Sites
 cd ~/Sites
