@@ -14,7 +14,7 @@
 // Background should be black
 .workspace,
 .editor:not(.mini) .workspace {
-  background: #000;
+  background: #000 !important;
 }
 
 
@@ -31,7 +31,7 @@
 }
 
 // Hide tab bar if no tabs are present
-.unity-mac-old .tab-bar {
+.unity-mac-new .tab-bar {
   height: auto;
 }
 
@@ -67,7 +67,7 @@
 
 // Tweak background color
 .tree-view-resizer {
-  background: #ddd;
+  background: #ddd !important;
 }
 
 // Remove top padding
@@ -129,6 +129,13 @@
 .tree-view:focus .selected::before {
   background-image: linear-gradient(#2C84CB, #2C84CB);
 }
+.unity-mac-new .tree-view .selected::before {
+  background: #ccc;
+}
+.tree-view .project-root.selected::before {
+  height: 25px;
+  background-image: linear-gradient(#ccc, #ccc) !important;
+}
 
 // Hide file directory icons
 .icon-file-directory::before {
@@ -151,9 +158,10 @@
 // Add padding to repo header
 .icon-repo {
   color: #555 !important;
-  height: 18px;
-  line-height: 16px !important;
+  height: 23px;
+  line-height:23px !important;
   text-shadow: none !important;
+  padding: 1px 0 0 0;
 }
 
 // Move README files to the top of tree view
@@ -161,8 +169,8 @@
   border-bottom: 1px solid #ccc !important;
   position: absolute;
   text-align: right;
-  padding: 1px 10px 0 0;
-  height: 24px;
+  padding: 4px 10px 0 0;
+  height: 27px;
 }
 
 // Hide README file icon
@@ -206,11 +214,16 @@
   background-color: #ddd;
 }
 
+// Tweak release notes icon color
+.release-notes-status {
+  color: #aaa;
+}
+
 
 // BACKGROUND APPEARANCE
 
 // Improve appearance when app is in background
-.unity-mac-old.is-blurred {
+.unity-mac-new.is-blurred {
   .tab-bar {
     background-color: #ddd;
     .tab.active {
