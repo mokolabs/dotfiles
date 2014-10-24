@@ -96,7 +96,7 @@
 
 // Add space between project root and entries
 .tree-view .entries {
-  padding-top: 9px;
+  padding-top: 7px;
 }
 .tree-view .entries .entries,
 .tree-view .entries .entries .entries,
@@ -128,7 +128,7 @@
   line-height: 21px !important;
 }
 .tree-view .expanded .header + .entries li:first-child {
-  margin-top: -7px;
+  margin-top: -5px;
 }
 
 // Tweak list item selected state colors
@@ -148,6 +148,12 @@
 .tree-view .project-root.selected::before {
   height: 25px;
   background-image: linear-gradient(#ccc, #ccc) !important;
+}
+
+// Change project root selected state text color to gray
+// when project root does not contain a README.md file
+.tree-view:focus .project-root.selected.entry > .header > .name {
+  color: #555;
 }
 
 // Hide file directory icons
