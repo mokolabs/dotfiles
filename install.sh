@@ -1,35 +1,36 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-cutstring="DO NOT EDIT BELOW THIS LINE"
+dotfiles="$HOME/.dotfiles"
 
-for name in *; do
-  target="$HOME/.$name"
-  if [ -e $target ]; then
-    if [ ! -L $target ]; then
-      cutline=`grep -n -m1 "$cutstring" "$target" | sed "s/:.*//"`
-      if [[ -n $cutline ]]; then
-        let "cutline = $cutline - 1"
-        echo "Updating $target"
-        head -n $cutline "$target" > update_tmp
-        startline=`tail -r "$name" | grep -n -m1 "$cutstring" | sed "s/:.*//"`
-        if [[ -n $startline ]]; then
-          tail -n $startline "$name" >> update_tmp
-        else
-          cat "$name" >> update_tmp
-        fi
-        mv update_tmp "$target"
-      else
-        echo "WARNING: $target exists but is not a symlink."
-      fi
-    fi
-  else
-    if [[ $name != 'install.sh' ]]; then
-      echo "Creating $target"
-      if [[ -n `grep "$cutstring" "$name"` ]]; then
-        cp "$PWD/$name" "$target"
-      else
-        ln -s "$PWD/$name" "$target"
-      fi
-    fi
+# to error out
+warn() {
+  echo "$1" >&2
+}
+
+die() {
+  warn "$1"
+  exit 1
+}
+
+lnif() {
+  if [ ! -e $2 ] ; then
+    ln -s $1 $2
   fi
-done
+}
+
+# Get latest changes
+echo "UPDATING DOTFILES\n"
+cd $dotfiles && git pull > /dev/null 2>&1
+
+# bash
+echo "Setting up bash...\n"
+lnif $dotfiles/bash_profile $HOME/.bash_profile
+
+# ruby
+echo "Setting up dev tools...\n"
+lnif $dotfiles/gitconfig $HOME/.gitconfig
+lnif $dotfiles/git-completion.bash $HOME/.git-completion.bash
+
+# vim
+echo "Setting up atom...\n"
+lnif $dotfiles/styles.less $HOME/.atom/styles.less
