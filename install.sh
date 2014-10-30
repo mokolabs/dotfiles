@@ -31,6 +31,8 @@ echo "Setting up dev tools...\n"
 lnif $dotfiles/gitconfig $HOME/.gitconfig
 lnif $dotfiles/git-completion.bash $HOME/.git-completion.bash
 
-# vim
+# atom
+# (manually copy stylesheet because atom can't use symlinks)
 echo "Setting up atom...\n"
-lnif $dotfiles/styles.less $HOME/.atom/styles.less
+rm $HOME/.atom/styles.less > /dev/null 2>&1
+cp $dotfiles/styles.less $HOME/.atom/styles.less
