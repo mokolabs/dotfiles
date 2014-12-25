@@ -1,0 +1,20 @@
+# Disable local mail
+MAILTO=""
+
+# Load ruby via .rbenv
+PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.app/Contents/MacOS/bin:/usr/local:/usr/local/bin:usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH"
+
+# Backup databases
+1	7	*	*	*	/Users/patrick/.rbenv/versions/1.8.7-p358/bin/ruby /Users/patrick/Library/Backup/Scripts/cinematreasures.rb
+1	7	*	*	*	/Users/patrick/.rbenv/versions/1.8.7-p358/bin/ruby /Users/patrick/Library/Backup/Scripts/graffletopia.rb
+
+# Backup Graffletopia AWS bucket (online)
+1	7	*	*	*	/usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.daily --delete --acl public-read
+1	7	*	*	6	/usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.weekly --delete --acl public-read
+1	7	1	*	*	/usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.monthly --delete --acl public-read
+
+# Backup Graffletopia AWS bucket (locally)
+1	7	*	*	*	/usr/local/bin/aws s3 sync s3://assets.graffletopia.com/production /Users/patrick/Documents/Graffletopia/Backup/AWS --delete --acl public-read
+
+# Sleep display
+1	7	*	*	*	/Applications/Utilities/SleepDisplay.app/Contents/MacOS/sleepdisplay
