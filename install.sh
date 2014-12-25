@@ -36,3 +36,8 @@ lnif $dotfiles/git-completion.bash $HOME/.git-completion.bash
 echo "Setting up atom...\n"
 rm $HOME/.atom/styles.less > /dev/null 2>&1
 cp $dotfiles/styles.less $HOME/.atom/styles.less
+
+# crontab
+echo "Setting up crontab...\n"
+echo "Reminder: crontab must be installed manually!\n"
+echo "crontab -e, copy paste ~/.dotfiles/crontab into cron, and then save\n"
