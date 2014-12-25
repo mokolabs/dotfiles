@@ -29,9 +29,6 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-# Disable Dropbox icons
-pluginkit -e ignore -i com.getdropbox.dropbox.garcon
-
 # Default to ~/Sites
 cd ~/Sites
 
