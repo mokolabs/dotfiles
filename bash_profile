@@ -40,7 +40,8 @@ alias backup="cd ~/Library/Backup/Scripts"
 alias daily="/usr/sbin/diskutil mount Daily &> /dev/null"
 alias weekly="/usr/sbin/diskutil mount Weekly &> /dev/null"
 alias monthly="/usr/sbin/diskutil mount Monthly &> /dev/null"
-alias eject="sh ~/Library/Backup/Scripts/eject.sh"
+alias mount="sh ~/Library/Backup/Scripts/drives/mount.sh"
+alias unmount="sh ~/Library/Backup/Scripts/drives/unmount.sh"
 
 # Aliases (web apps)
 alias launch="osascript ~/.launcher.app"
