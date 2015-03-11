@@ -21,7 +21,7 @@
 // TABS
 
 // Hide tab icons
-.unity-mac-old .tab-bar .title:before {
+.theme-unity-ui .tab-bar .title:before {
   display: none;
 }
 
@@ -31,21 +31,13 @@
 }
 
 // Hide tab bar if no tabs are present
-.unity-mac-new .tab-bar {
+.theme-unity-ui .tab-bar {
   height: auto;
 }
 
-// Update tab close icon hover states to match Yosemite
-.unity-mac-new .tab-bar .tab .close-icon::before {
-  border-radius: 3px;
-  height: 14px;
-  width: 15px;
-  padding: 1px;
-  font-size: 12px !important;
-
-}
-.unity-mac-new .tab-bar .tab .close-icon:hover::before {
-  background: #bbb;
+// Increase tab text size
+.theme-unity-ui .tab-bar .title {
+  font-size: 12px;
 }
 
 
@@ -74,91 +66,70 @@
 
 // TREE VIEW
 
+// Tweak background color
+.tree-view {
+  background: #efefef;
+}
+
 // Show tree view icons in monochrome
 @import "packages/file-icons/features/force-show-icons";
 @import "packages/file-icons/features/no-colours";
 
-// Tweak background color
-.tree-view-resizer {
-  background: #ddd !important;
-}
-
-// Remove top padding
+// Increase text size
 .tree-view {
-  margin-top: -1px;
-  padding-top: 0px;
+  font-size: 12px;
 }
 
 // Directories should be bold
 .tree-view .header {
   font-weight: bold;
+  opacity: 0.8;
 }
 
-// Add space between project root and entries
-.tree-view .entries {
-  padding-top: 7px;
-}
-.tree-view .entries .entries,
-.tree-view .entries .entries .entries,
-.tree-view .entries .entries .entries .entries {
-  padding-top: 6px;
+// Don't show Sass icons
+.tab-bar .tab .title[data-path][data-name$=".scss"]:before, 
+.icon-file-text[data-name$=".scss"]:before {
+  content: none;
 }
 
-// Turn project root into header
-.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item::before {
-  content: '';
-  margin: 0 0 0 -10px;
-}
-.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
-  pointer-events: none;
-}
-.tree-view .project-root.selected::before,
-.tree-view:focus .project-root.selected::before {
-  background-image: none;
-}
-
-// Reduce left margins
+// Tweak left margins
 .tree-view .directory .entries {
-  margin-left: 6px;
+  margin-left: 3px;
 }
 
-// Decrease list item spacing
-.tree-view .list-item,
-.tree-view .selected::before {
-  line-height: 21px !important;
-}
-.tree-view .expanded .header + .entries li:first-child {
-  margin-top: -5px;
-}
-
-// Tweak list item selected state colors
-.tree-view .selected::before,
-.tree-view:focus .selected::before {
-  box-shadow: none;
-}
-.tree-view .selected::before {
-  background-image: linear-gradient(#bbb, #bbb);
-}
-.tree-view:focus .selected::before {
-  background-image: linear-gradient(#2C84CB, #2C84CB);
-}
-.unity-mac-new .tree-view .selected::before {
-  background: #ccc;
-}
-.tree-view .project-root.selected::before {
-  height: 25px;
-  background-image: linear-gradient(#ccc, #ccc) !important;
-}
-
-// Change project root selected state text color to gray
-// when project root does not contain a README.md file
-.tree-view:focus .project-root.selected.entry > .header > .name {
-  color: #555;
+// Lighten list item text color
+.tree-view .directory .entries {
+  color: #777;
 }
 
 // Hide file directory icons
 .icon-file-directory::before {
   content: none;
+}
+
+// Tweak list item selected state colors
+.tree-view li.selected:before {
+  background: #ccc;
+}
+
+// Tweak project root top margin
+.tree-view {
+  margin-top: -4px;
+}
+
+// Tweak space between project root and entries
+.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
+  padding-bottom: 2px;
+}
+
+// Hide disclosure triangle for project root
+.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item::before {
+  content: '';
+}
+
+// Tweak project root icon position 
+.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item::before {
+  margin: 0 0 0 -14px;
 }
 
 // Show repo icon
@@ -174,36 +145,48 @@
   color: #777 !important;
 }
 
-// Add padding to repo header
+// Add padding to project root
 .icon-repo {
   color: #555 !important;
   height: 23px;
-  line-height:23px !important;
+  line-height: 23px !important;
   text-shadow: none !important;
-  padding: 1px 0 0 0;
 }
 
 // Move README files to the top of tree view
+.tree-view .entry .name[data-name="README"],
 .tree-view .entry .name[data-name="README.md"] {
-  border-bottom: 1px solid #ccc !important;
+  border-bottom: 1px solid #dedede;
+  padding-right: 6px;
+  padding-top: 7px;
   position: absolute;
+  right: 0;
   text-align: right;
-  padding: 4px 10px 0 0;
-  height: 27px;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+// Tweak README right padding for READMEs with no file extension
+.tree-view .entry .name[data-name="README"] {
+  padding-right: 6px;
 }
 
 // Hide README file icon
+.tree-view .entry .icon[data-name="README"]::before,
 .tree-view .entry .icon[data-name="README.md"]::before {
   display: none;
 }
 
-// Disable selected state for README
+// Disable README selected state text color
+.tree-view:focus .entry .name[data-name="README"],
 .tree-view:focus .entry .name[data-name="README.md"] {
   color: #555;
   text-shadow: none;
 }
+
+// Disable README selected state background color
 .tree-view .entries li.list-nested-item:nth-child(1) ~ li.list-item:last-child::before {
-  // Hide selected state of README in top level directory
   // assuming repo contains at least one directory
   background: none !important;
   background-image: none !important;
@@ -225,6 +208,17 @@
   background-image: linear-gradient(#2C84CB, #2C84CB) !important;
 }
 
+// Disable pointer events
+.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
+  pointer-events: none;
+}
+
+// Change project root selected state text color to gray
+// when project root does not contain a README.md file
+.tree-view:focus .project-root.selected.entry > .header > .name {
+  color: #555;
+}
+
 
 // STATUS BAR
 
@@ -242,7 +236,7 @@
 // BACKGROUND APPEARANCE
 
 // Improve appearance when app is in background
-.unity-mac-new.is-blurred {
+.theme-unity-ui.is-blurred {
   .tab-bar {
     background-color: #ddd;
     .tab.active {
