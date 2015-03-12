@@ -44,7 +44,7 @@ alias mount="sh ~/Library/Backup/Scripts/drives/mount.sh"
 alias unmount="sh ~/Library/Backup/Scripts/drives/unmount.sh"
 
 # Aliases (web apps)
-alias launch="osascript ~/.launcher.app"
+alias launch="osascript ~/.launcher.applescript"
 alias beekman="cd ~/Sites/beekman"
 alias cinema="cd ~/Sites/beekman"
 alias crowley="cd ~/Sites/crowleyportraits"
