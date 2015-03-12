@@ -39,8 +39,7 @@ cp $dotfiles/styles.less $HOME/.atom/styles.less
 
 # launcher
 echo "Installing launcher applescript...\n"
-rm $HOME/.launcher.applescript > /dev/null 2>&1
-cp $dotfiles/launcher.applescript $HOME/.launcher.applescript
+lnif $dotfiles/launcher.applescript $HOME/.launcher.applescript
 
 # crontab
 echo "Setting up crontab...\n"
