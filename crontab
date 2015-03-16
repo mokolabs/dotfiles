@@ -13,6 +13,10 @@ PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.a
 # Unmute volume in morning
 1       7       *       *       *       /usr/bin/osascript -e 'set volume output volume 25'
 
+# Process email
+1       7,9,18,20,22    *       *       *       /usr/bin/open -j /Applications/Mail.app
+2       7,9,18,20,22    *       *       *       /usr/bin/osascript -e 'quit app "Mail"'
+
 # Darken screen at night
 1       18      *       *       *       /usr/bin/osascript /Users/patrick/Library/Scripts/Toggle\ Shades.app
 
