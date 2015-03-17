@@ -34,7 +34,8 @@ cd ~/Sites
 
 # Aliases (system)
 alias desktop="cd ~/Desktop"
-alias setup="/usr/local/bin/atom ~/.setup"
+alias dotfiles="cd ~/.dotfiles"
+alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
 
 # Aliases (backup)
 alias backup="cd ~/Library/Backup/Scripts"
