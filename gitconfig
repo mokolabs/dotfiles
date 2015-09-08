@@ -4,5 +4,4 @@
 [alias]
 	sync = !git pull && git submodule update --init --recursive
 [heroku]
-[heroku]
 	account = mokolabs
