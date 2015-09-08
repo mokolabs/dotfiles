@@ -1,6 +1,6 @@
 # Set PATH variable
 export PATH="/usr/local:/usr/local/bin:usr/local/sbin:/usr/local/share/npm/bin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 
 # Customize prompt
 export DISPLAY=:0.0
