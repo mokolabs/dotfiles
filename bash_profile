@@ -29,9 +29,6 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-# Default to ~/Sites
-cd ~/Sites
-
 # Aliases (system)
 alias desktop="cd ~/Desktop"
 alias dotfiles="cd ~/.dotfiles"
