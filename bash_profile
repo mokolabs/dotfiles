@@ -69,3 +69,17 @@ function start {
     script/server
   fi
 }
+
+# Switch Heroku accounts
+function cd () { builtin cd "$@" && switch; }
+function switch () {
+  if [[ "$PWD" =~ Sites ]]
+  then
+    if [[ "$PWD" =~ beekman ]]
+    then heroku accounts:set cinema
+    elif [[ "$PWD" =~ graffletopia ]]
+    then heroku accounts:set graffletopia
+    else heroku accounts:set mokolabs
+    fi
+  fi
+}
