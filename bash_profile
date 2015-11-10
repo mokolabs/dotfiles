@@ -70,16 +70,23 @@ function start {
   fi
 }
 
+
+
 # Switch Heroku accounts
-function cd () { builtin cd "$@" && switch; }
-function switch () {
+function cd () { builtin cd "$@" && switch_heroku_accounts; }
+function switch_heroku_accounts () {
   if [[ "$PWD" =~ Sites ]]
   then
     if [[ "$PWD" =~ beekman ]]
-    then heroku accounts:set cinema
+    then /usr/local/heroku/bin/heroku accounts:set cinema
     elif [[ "$PWD" =~ graffletopia ]]
-    then heroku accounts:set graffletopia
-    else heroku accounts:set mokolabs
+    then /usr/local/heroku/bin/heroku accounts:set graffletopia
+    else /usr/local/heroku/bin/heroku accounts:set mokolabs
     fi
   fi
 }
+function check_heroku_account(){
+  switch_heroku_accounts;
+  /usr/local/heroku/bin/heroku "$@";
+}
+alias heroku=check_heroku_account;
