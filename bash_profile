@@ -70,11 +70,9 @@ function start {
   fi
 }
 
-
-
 # Switch Heroku accounts
-function cd () { builtin cd "$@" && switch_heroku_accounts; }
-function switch_heroku_accounts () {
+function cd () { builtin cd "$@" && set_heroku_account; }
+function set_heroku_account () {
   if [[ "$PWD" =~ Sites ]]
   then
     if [[ "$PWD" =~ beekman ]]
@@ -85,8 +83,8 @@ function switch_heroku_accounts () {
     fi
   fi
 }
-function check_heroku_account(){
-  switch_heroku_accounts;
+function set_account_before_running_heroku_command(){
+  set_heroku_account;
   /usr/local/heroku/bin/heroku "$@";
 }
-alias heroku=check_heroku_account;
+alias heroku=set_account_before_running_heroku_command;
