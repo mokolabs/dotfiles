@@ -41,6 +41,11 @@ cp $dotfiles/styles.less $HOME/.atom/styles.less
 echo "Installing launcher applescript...\n"
 lnif $dotfiles/launcher.applescript $HOME/.launcher.applescript
 
+# drive tools
+echo "Setting up drive tools...\n"
+lnif $dotfiles/drive_mount $HOME/.drive_mount
+lnif $dotfiles/drive_unmount $HOME/.drive_unmount
+
 # crontab
 echo "Setting up crontab...\n"
 echo "Reminder: crontab must be installed manually!\n"
