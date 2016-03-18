@@ -2,17 +2,8 @@
 
 dotfiles="$HOME/.dotfiles"
 
-# to error out
-warn() {
-  echo "$1" >&2
-}
-
-die() {
-  warn "$1"
-  exit 1
-}
-
-lnif() {
+link() {
+  # link file unless link already exists
   if [ ! -e $2 ] ; then
     ln -s $1 $2
   fi
@@ -23,30 +14,38 @@ echo "UPDATING DOTFILES\n"
 cd $dotfiles && git pull > /dev/null 2>&1
 
 # bash
-echo "Setting up bash...\n"
-lnif $dotfiles/bash_profile $HOME/.bash_profile
+echo "...Bash profile\n"
+link $dotfiles/bash_profile $HOME/.bash_profile
 
 # ruby
-echo "Setting up dev tools...\n"
-lnif $dotfiles/gitconfig $HOME/.gitconfig
-lnif $dotfiles/git-completion.bash $HOME/.git-completion.bash
+echo "...Git tools\n"
+link $dotfiles/gitconfig $HOME/.gitconfig
+link $dotfiles/git-completion.bash $HOME/.git-completion.bash
 
 # atom
 # (manually copy stylesheet because atom can't use symlinks)
-echo "Setting up atom...\n"
+echo "...Atom styles\n"
 rm $HOME/.atom/styles.less > /dev/null 2>&1
 cp $dotfiles/styles.less $HOME/.atom/styles.less
 
 # launcher
-echo "Installing launcher applescript...\n"
-lnif $dotfiles/launcher.applescript $HOME/.launcher.applescript
+echo "...Launcher applescript\n"
+link $dotfiles/launcher.applescript $HOME/.launcher.applescript
 
 # drive tools
-echo "Setting up drive tools...\n"
-lnif $dotfiles/drive_mount $HOME/.drive_mount
-lnif $dotfiles/drive_unmount $HOME/.drive_unmount
+echo "...Drive tools\n"
+link $dotfiles/drive_mount.sh $HOME/.drive_mount.sh
+link $dotfiles/drive_unmount.sh $HOME/.drive_unmount.sh
 
 # crontab
-echo "Setting up crontab...\n"
-echo "Reminder: crontab must be installed manually!\n"
-echo "crontab -e, copy paste ~/.dotfiles/crontab into cron, and then save\n"
+echo "...Crontab (must be installed manually)\n"
+echo "   Show sample crontab?"
+read -s input
+
+if [ "$input" == "y" ]; then
+  cat ~/.dotfiles/crontab
+elif [ "$input" == "yes" ]; then
+  cat ~/.dotfiles/crontab
+else
+  echo ""
+fi
