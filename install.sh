@@ -38,13 +38,18 @@ link $dotfiles/drive_mount.sh $HOME/.drive_mount.sh
 link $dotfiles/drive_unmount.sh $HOME/.drive_unmount.sh
 
 # crontab
-echo "...Crontab (must be installed manually)\n"
-echo "   Show sample crontab?"
+echo "...Crontab (must be installed manually)"
+tput sc
+echo "\n   Show sample?"
 read -s input
+tput rc
+tput ed
 
 if [ "$input" == "y" ]; then
+  echo "\n\n"
   cat ~/.dotfiles/crontab
 elif [ "$input" == "yes" ]; then
+  echo "\n\n"
   cat ~/.dotfiles/crontab
 else
   echo ""
