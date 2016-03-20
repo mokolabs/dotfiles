@@ -6,23 +6,23 @@ PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.a
 
 # Run email filters once an hour
 1       *       *       *       *       /usr/bin/open -j /Applications/Mail.app
-2       *       *       *       *       /usr/bin/osascript -e 'quit app "Mail"'
+2       *       *       *       *       /usr/bin/lsappinfo info -only name `lsappinfo front` | /usr/bin/grep Mail > /de$
 
 # Sleep display (when waking to backup)
-1       7       *       *       *       /Applications/Utilities/SleepDisplay.app/Contents/MacOS/sleepdisplay
+1       7       *       *       *       /Applications/SleepDisplay.app/Contents/MacOS/sleepdisplay
 
 # Brighten screen in morning
-1       7       *       *       *       /usr/bin/osascript /Users/patrick/Library/Scripts/Toggle\ Shades.app
+# 1     7       *       *       *       /usr/bin/osascript /Users/patrick/Library/Scripts/Toggle\ Shades.app
 
 # Unmute volume in morning
 1       7       *       *       *       /usr/bin/osascript -e 'set volume output volume 25'
 
 # Darken screen at night
-1       18      *       *       *       /usr/bin/osascript /Users/patrick/Library/Scripts/Toggle\ Shades.app
+# 30    17      *       *       *       /usr/bin/osascript /Users/patrick/Library/Scripts/Toggle\ Shades.app
 
 # Backup Cinema Treasures and Graffletopia databases
-1       18      *       *       *       /Users/patrick/.rbenv/versions/1.8.7-p358/bin/ruby /Users/patrick/Library/Backu$
-1       18      *       *       *       /Users/patrick/.rbenv/versions/1.8.7-p358/bin/ruby /Users/patrick/Library/Backu$
+1       18      *       *       *       /Users/patrick/.rbenv/shims/ruby /Users/patrick/Library/Backup/Scripts/sites/ci$
+1       18      *       *       *       /Users/patrick/.rbenv/shims/ruby /Users/patrick/Library/Backup/Scripts/sites/gr$
 
 # Backup Graffletopia assets locally
 1       18      *       *       *       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com/production /Users/patri$
@@ -37,3 +37,7 @@ PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.a
 
 # Stop iTunes playback before bedtime (in case it was left running)
 1       20      *       *       *       /usr/bin/osascript -e 'tell application "iTunes" to pause'
+
+# Update Photos
+0       20      *       *       *       /usr/bin/open -a Photos
+15      20      *       *       *       /usr/bin/osascript -e 'quit app "Photos"'
