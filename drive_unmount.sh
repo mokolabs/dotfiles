@@ -23,13 +23,8 @@ unmount_monthly () {
 	`echo "$(/bin/date +"%Y-%m-%d %T %p") => Monthly drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
 }
 
-# Wait one second
-sleep 1
-
-# Add line break between unmounts (except if unmounting all drives)
-if ls -1 /Volumes/ | grep ly &> /dev/null ; then 
-	`echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
-fi
+# Add line break to backup console output before we start
+`echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
 
 # Unmount single drives (with `unmount {drive}`)
 if [ "$1" = "daily" ]; then
@@ -44,3 +39,6 @@ elif [ "$1" = "all" ]; then
 else
 	unmount_all
 fi
+
+# Add line break to backup console output when we finish
+`echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`

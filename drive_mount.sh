@@ -22,7 +22,7 @@ mount_monthly () {
 	`echo "$(/bin/date +"%Y-%m-%d %T %p") => Monthly drive mounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
 }
 
-# Add line break between mounts
+# Add line break to backup console output before we start
 `echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
 
 # Mount single drives (with `mount {drive}`)
@@ -38,3 +38,6 @@ elif [ "$1" = "all" ]; then
 else
 	mount_all
 fi
+
+# Add line break to backup console output when we finish
+`echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
