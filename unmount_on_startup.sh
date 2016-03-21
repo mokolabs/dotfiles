@@ -9,10 +9,10 @@ do
   diskutil unmount Daily 2>/dev/null
 
   # Check if drive unmounted
-	CHECK_FOR_DRIVE="$?"
+	CHECK_DAILY="$?"
 	
   # Unmount successful
-	if [ "$CHECK_FOR_DRIVE" = "0" ]; then
+	if [ "$CHECK_DAILY" = "0" ]; then
     
     `echo "$(/bin/date +"%Y-%m-%d %T %p") => Daily drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
     
@@ -38,10 +38,10 @@ do
   diskutil unmount Weekly 2>/dev/null
 
   # Check if drive unmounted
-	CHECK_FOR_DRIVE="$?"
+	CHECK_WEEKLY="$?"
 	
   # Unmount successful
-	if [ "$CHECK_FOR_DRIVE" = "0" ]; then
+	if [ "$CHECK_WEEKLY" = "0" ]; then
     
     `echo "$(/bin/date +"%Y-%m-%d %T %p") => Weekly drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
     
@@ -66,10 +66,10 @@ do
   diskutil unmount Monthly 2>/dev/null
 
   # Check if drive unmounted
-	CHECK_FOR_DRIVE="$?"
+	CHECK_MONTHLY="$?"
 	
   # Unmount successful
-	if [ "$CHECK_FOR_DRIVE" = "0" ]; then
+	if [ "$CHECK_MONTHLY" = "0" ]; then
         
     `echo "$(/bin/date +"%Y-%m-%d %T %p") => Monthly drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
 
@@ -85,3 +85,6 @@ do
 	fi	
 
 done
+
+# Add line break to backup console output when we finish
+`echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
