@@ -1,17 +1,87 @@
 #!/bin/bash
 
-# Unmount backup drives on startup
-# (try twice in case drives are stubborn)
-sleep 3
+# Unmount Daily drive
 COUNT=1
-while [ "$COUNT" -le 2 ]
+while [ "$COUNT" -le 3 ]
 do
 
-	/usr/sbin/diskutil unmount Daily &> /dev/null
-	/usr/sbin/diskutil unmount Weekly &> /dev/null
-	/usr/sbin/diskutil unmount Monthly &> /dev/null
+  # Attempt to unmount drive
+  diskutil unmount Daily 2>/dev/null
 
-	COUNT=`expr $COUNT + 1`
-	sleep 2
+  # Check if drive unmounted
+	CHECK_FOR_DRIVE="$?"
 	
+  # Unmount successful
+	if [ "$CHECK_FOR_DRIVE" = "0" ]; then
+    
+    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Daily drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+    
+    echo "unmounted daily!"
+
+    break
+    
+  # Unmount failed
+	else
+    # Sleep 2 seconds then try again
+		COUNT=`expr $COUNT + 1`
+		sleep 2
+	fi	
+
+done
+
+# Unmount Weekly drive
+COUNT=1
+while [ "$COUNT" -le 3 ]
+do
+
+  # Attempt to unmount drive
+  diskutil unmount Weekly 2>/dev/null
+
+  # Check if drive unmounted
+	CHECK_FOR_DRIVE="$?"
+	
+  # Unmount successful
+	if [ "$CHECK_FOR_DRIVE" = "0" ]; then
+    
+    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Weekly drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+    
+    echo "unmounted weekly!"
+    break
+    
+  # Unmount failed
+	else
+    # Sleep 2 seconds then try again
+		COUNT=`expr $COUNT + 1`
+		sleep 2
+	fi	
+
+done
+
+# Unmount Monthly drive
+COUNT=1
+while [ "$COUNT" -le 3 ]
+do
+
+	# Attempt to unmount drive
+  diskutil unmount Monthly 2>/dev/null
+
+  # Check if drive unmounted
+	CHECK_FOR_DRIVE="$?"
+	
+  # Unmount successful
+	if [ "$CHECK_FOR_DRIVE" = "0" ]; then
+        
+    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Monthly drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+
+    echo "unmounted monthly!"
+
+    break
+    
+  # Unmount failed
+	else 
+    # Sleep 2 seconds then try again
+		COUNT=`expr $COUNT + 1`
+		sleep 2
+	fi	
+
 done
