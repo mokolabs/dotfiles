@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Wait for drives to mount before unmounting
-sleep 5
+sleep 10
 
 # Unmount Daily drive
 COUNT=1
