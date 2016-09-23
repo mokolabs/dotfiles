@@ -71,20 +71,36 @@ function start {
 }
 
 # Switch Heroku accounts
-function cd () { builtin cd "$@" && set_heroku_account; }
-function set_heroku_account () {
-  if [[ "$PWD" =~ Sites ]]
-  then
-    if [[ "$PWD" =~ beekman ]]
-    then /usr/local/heroku/bin/heroku accounts:set cinema
-    elif [[ "$PWD" =~ graffletopia ]]
-    then /usr/local/heroku/bin/heroku accounts:set graffletopia
-    else /usr/local/heroku/bin/heroku accounts:set mokolabs
+function cd () { builtin cd "$@" && switch; }
+function switch () {
+  if [ -n "$1" ]; then
+    if [ $1 == "cinema" ] || [ $1 == "beekman" ]; then
+      echo 'switched to cinema'
+      /usr/local/heroku/bin/heroku accounts:set cinema
     fi
+    if [ $1 == "graffletopia" ] || [ $1 == "graffle" ]; then
+      echo 'switched to graffletopia'
+      /usr/local/heroku/bin/heroku accounts:set graffletopia
+    fi
+    if [ $1 == "moko" ] || [ $1 == "mokolabs" ]; then
+      echo 'switched to mokolabs'
+      /usr/local/heroku/bin/heroku accounts:set mokolabs
+    fi
+  fi
+
+  # Cinema Treasures
+  if [[ "$PWD" =~ beekman ]]; then
+    /usr/local/heroku/bin/heroku accounts:set cinema
+  # Graffletopia
+  elif [[ "$PWD" =~ graffletopia ]]; then
+    /usr/local/heroku/bin/heroku accounts:set graffletopia
+  # Use mokolabs (while in all other Sites directories)
+  elif [[ "$PWD" =~ Sites ]]; then
+    /usr/local/heroku/bin/heroku accounts:set mokolabs
   fi
 }
 function set_account_before_running_heroku_command(){
-  set_heroku_account;
+  switch;
   /usr/local/heroku/bin/heroku "$@";
 }
 alias heroku=set_account_before_running_heroku_command;
