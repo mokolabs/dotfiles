@@ -170,7 +170,8 @@ atom-text-editor::shadow {
 
 // Move README files to the top of tree view
 .tree-view .entry .name[data-name="README"],
-.tree-view .entry .name[data-name="README.md"] {
+.tree-view .entry .name[data-name="README.md"],
+.tree-view .entry .name[data-name="README.txt"] {
   border-bottom: 1px solid #dedede;
   padding-right: 6px;
   padding-top: 8px;
@@ -189,13 +190,15 @@ atom-text-editor::shadow {
 
 // Hide README file icon
 .tree-view .entry .icon[data-name="README"]::before,
-.tree-view .entry .icon[data-name="README.md"]::before {
+.tree-view .entry .icon[data-name="README.md"]::before,
+.tree-view .entry .icon[data-name="README.txt"]::before {
   display: none;
 }
 
 // Disable README selected state text color
 .tree-view:focus .entry .name[data-name="README"],
-.tree-view:focus .entry .name[data-name="README.md"] {
+.tree-view:focus .entry .name[data-name="README.md"],
+.tree-view:focus .entry .name[data-name="README.txt"] {
   color: #555;
   text-shadow: none;
 }
