@@ -18,7 +18,7 @@
 }
 
 // Selected text should be dark gray
-.selection .region {
+atom-text-editor::shadow .selection .region {
   background-color: #222 !important;
 }
 
@@ -31,8 +31,8 @@
 }
 
 // Add space between tab bar and editor
-.editor:not(.mini) .scroll-view {
-  padding: 6px 0 0 8px;
+atom-text-editor::shadow .scroll-view {
+  padding: 5px 0 0 8px;
 }
 
 // Hide tab bar if no tabs are present
@@ -49,7 +49,7 @@
 // GUTTER
 
 // Improve gutter appearance
-.editor:not(.mini) {
+atom-text-editor::shadow {
   .gutter {
     background-color: #ddd;
     padding-top: 6px;
@@ -76,6 +76,10 @@
   background: #efefef;
 }
 
+.tree-view .entries {
+  margin-left: -12px;
+}
+
 // Show tree view icons in monochrome
 @import "packages/file-icons/features/force-show-icons";
 @import "packages/file-icons/features/no-colours";
@@ -83,6 +87,19 @@
 // Increase text size
 .tree-view {
   font-size: 12px;
+}
+
+// Tweak project root top margin
+.tree-view {
+  margin-top: -6px;
+}
+.tree-view .project-root:first-child {
+  margin-top: 2px;
+}
+
+// Tweak space between project root and entries
+.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
+  padding-bottom: 0px;
 }
 
 // Directories should be bold
@@ -98,8 +115,11 @@
 }
 
 // Tweak left margins
-.tree-view .directory .entries {
+.tree-view .directory .entries > li {
   margin-left: 3px;
+}
+.tree-view .directory .entries > li li {
+  margin-left: 18px;
 }
 
 // Lighten list item text color
@@ -117,16 +137,6 @@
   background: #ccc;
 }
 
-// Tweak project root top margin
-.tree-view {
-  margin-top: -4px;
-}
-
-// Tweak space between project root and entries
-.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
-  padding-bottom: 2px;
-}
-
 // Hide disclosure triangle for project root
 .tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item::before {
   content: '';
@@ -134,7 +144,7 @@
 
 // Tweak project root icon position 
 .tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item::before {
-  margin: 0 0 0 -14px;
+  margin: 0 0 0 -18px;
 }
 
 // Show repo icon
@@ -163,7 +173,7 @@
 .tree-view .entry .name[data-name="README.md"] {
   border-bottom: 1px solid #dedede;
   padding-right: 6px;
-  padding-top: 7px;
+  padding-top: 8px;
   position: absolute;
   right: 0;
   text-align: right;
