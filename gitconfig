@@ -5,3 +5,5 @@
 	sync = !git pull && git submodule update --init --recursive
 [heroku]
 	account = mokolabs
+[credential]
+	helper = osxkeychain
