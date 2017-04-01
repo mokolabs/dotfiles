@@ -45,19 +45,15 @@ alias unmount="sh ~/.drive_unmount.sh"
 
 # Aliases (web apps)
 alias launch="osascript ~/.launcher.applescript"
-alias beekman="cd ~/Sites/beekman"
+alias sites="cd ~/Sites/"
 alias cinema="cd ~/Sites/beekman"
 alias crowley="cd ~/Sites/crowleyportraits"
-alias crowleyportraits="cd ~/Sites/crowleyportraits"
 alias graffle="cd ~/Sites/graffletopia"
-alias graffletopia="cd ~/Sites/graffletopia"
-alias icalshare="cd ~/Sites/icalshare"
-alias jarvis="cd ~/Sites/jarvis"
 alias moko="cd ~/Sites/mokolabs"
-alias mokolabs="cd ~/Sites/mokolabs"
-alias raise="cd ~/Sites/raise"
-alias sdruby="cd ~/Sites/sdruby"
-alias sites="cd ~/Sites/"
+for a in `cd ~/Sites; ls | grep -Ev "heroku"`; do
+  echo "$a=cd ~/Sites/$a";
+  alias "$a=cd ~/Sites/$a";
+done
 
 # Launch Ruby apps
 function start {
