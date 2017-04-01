@@ -100,3 +100,9 @@ function set_account_before_running_heroku_command(){
   /usr/local/heroku/bin/heroku "$@";
 }
 alias heroku=set_account_before_running_heroku_command;
+
+# Bounce WiFi
+function bounce {
+  /usr/sbin/networksetup -setairportpower en1 off;
+  /usr/sbin/networksetup -setairportpower en1 on;
+}
