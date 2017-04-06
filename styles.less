@@ -12,13 +12,13 @@
 // WINDOW
 
 // Background should be black
-.workspace,
-.editor:not(.mini) .workspace {
+atom-workspace,
+atom-text-editor:not(.mini) atom-workspace {
   background: #000 !important;
 }
 
 // Selected text should be dark gray
-atom-text-editor::shadow .selection .region {
+atom-text-editor .selection .region {
   background-color: #222 !important;
 }
 
@@ -31,7 +31,7 @@ atom-text-editor::shadow .selection .region {
 }
 
 // Add space between tab bar and editor
-atom-text-editor::shadow .scroll-view {
+atom-text-editor .scroll-view {
   padding: 5px 0 0 8px;
 }
 
@@ -49,10 +49,7 @@ atom-text-editor::shadow .scroll-view {
 // GUTTER
 
 // Improve gutter appearance
-atom-text-editor::shadow {
-  .gutter-container {
-    display: block !important;
-  }
+atom-text-editor {
   .gutter {
     background-color: #ddd;
     padding-top: 6px;
@@ -82,10 +79,6 @@ atom-text-editor::shadow {
 .tree-view .entries {
   margin-left: -12px;
 }
-
-// Show tree view icons in monochrome
-@import "packages/file-icons/features/force-show-icons";
-@import "packages/file-icons/features/no-colours";
 
 // Increase text size
 .tree-view {
@@ -173,8 +166,7 @@ atom-text-editor::shadow {
 
 // Move README files to the top of tree view
 .tree-view .entry .name[data-name="README"],
-.tree-view .entry .name[data-name="README.md"],
-.tree-view .entry .name[data-name="README.txt"] {
+.tree-view .entry .name[data-name="README.md"] {
   border-bottom: 1px solid #dedede;
   padding-right: 6px;
   padding-top: 8px;
@@ -193,15 +185,13 @@ atom-text-editor::shadow {
 
 // Hide README file icon
 .tree-view .entry .icon[data-name="README"]::before,
-.tree-view .entry .icon[data-name="README.md"]::before,
-.tree-view .entry .icon[data-name="README.txt"]::before {
+.tree-view .entry .icon[data-name="README.md"]::before {
   display: none;
 }
 
 // Disable README selected state text color
 .tree-view:focus .entry .name[data-name="README"],
-.tree-view:focus .entry .name[data-name="README.md"],
-.tree-view:focus .entry .name[data-name="README.txt"] {
+.tree-view:focus .entry .name[data-name="README.md"] {
   color: #555;
   text-shadow: none;
 }
@@ -244,7 +234,7 @@ atom-text-editor::shadow {
 // STATUS BAR
 
 // Tweak background color
-.tool-panel.panel-bottom {
+atom-panel.bottom {
   background-color: #ddd;
 }
 
@@ -269,7 +259,7 @@ atom-text-editor::shadow {
       }
     }
   }
-  .editor:not(.mini) {
+  atom-text-editor:not(.mini) {
     .gutter {
       background-color: #ddd;
     }
@@ -285,7 +275,7 @@ atom-text-editor::shadow {
     background-image: linear-gradient(#ddd, #ddd);
     box-shadow: none;
   }
-  .tool-panel.panel-bottom {
+  atom-panel.bottom {
     background-color: #ddd;
   }
 }
