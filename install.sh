@@ -16,6 +16,8 @@ cd $dotfiles && git pull > /dev/null 2>&1
 # bash
 echo "...Bash profile\n"
 link $dotfiles/bash_profile $HOME/.bash_profile
+echo "...Bash completion\n"
+link $dotfiles/bash_completion $HOME/.bash_completion
 
 # ruby
 echo "...Git tools\n"

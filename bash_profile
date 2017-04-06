@@ -52,6 +52,7 @@ alias graffle="cd ~/Sites/graffletopia"
 alias moko="cd ~/Sites/mokolabs"
 for a in `cd ~/Sites; ls | grep -Ev "heroku"`; do
   alias "$a=cd ~/Sites/$a";
+  complete -F _complete_alias $a;
 done
 
 # Launch Ruby apps
