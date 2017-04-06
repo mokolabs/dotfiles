@@ -52,7 +52,7 @@ atom-text-editor .scroll-view {
 atom-text-editor {
   .gutter {
     background-color: #ddd;
-    margin-bottom: -12px !important;
+    padding-top: 6px;
     .line-number {
        color: #888;
        opacity: 1;
@@ -79,6 +79,10 @@ atom-text-editor {
 .tree-view .entries {
   margin-left: -12px;
 }
+
+// Show tree view icons in monochrome
+// @import "packages/file-icons/features/force-show-icons";
+// @import "packages/file-icons/features/no-colours";
 
 // Increase text size
 .tree-view {
