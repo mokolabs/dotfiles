@@ -32,7 +32,7 @@ fi
 # Aliases (system)
 alias desktop="cd ~/Desktop"
 alias dotfiles="cd ~/.dotfiles"
-alias dotfilesup="/usr/bin/env sh ~/.dotfiles/install.sh bypass; source ~/.bash_profile"
+alias dotfilesup="/usr/bin/env sh ~/.dotfiles/install.sh bypass"
 alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
 alias dropbox="mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak; killall Finder"
 
