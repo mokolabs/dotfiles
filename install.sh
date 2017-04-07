@@ -2,54 +2,82 @@
 
 dotfiles="$HOME/.dotfiles"
 
+copy() {
+  # copy file
+  echo "... copied file from $1 -> $2";
+  cp $1 $2
+}
+
+remove() {
+  # remove file
+  echo "... removed $1";
+  rm $1 > /dev/null 2>&1
+}
+
 link() {
-  # link file unless link already exists
+  # link file (unless link already exists)
   if [ ! -e $2 ] ; then
-    ln -s $1 $2
+    echo "... add link from $2 -> $1";
+    ln -s $1 $2;
+  else
+    echo "... found link from $2 -> $1";
   fi
 }
 
 # Get latest changes
-echo "UPDATING DOTFILES\n"
+echo "\nUPDATING DOTFILES"
+echo "... Switching to ~/.dotfiles directory"
+echo "... Pulling changes from master repo"
 cd $dotfiles && git pull > /dev/null 2>&1
 
 # Bash
-echo "...Bash profile and completion\n"
+echo "\nBASH PROFILE AND COMPLETION"
 link $dotfiles/bash_profile $HOME/.bash_profile
 link $dotfiles/bash_completion $HOME/.bash_completion
 
 # Ruby
-echo "...Git config and completion\n"
+echo "\nGIT CONFIG AND COMPLETION"
 link $dotfiles/gitconfig $HOME/.gitconfig
 link $dotfiles/git-completion.bash $HOME/.git-completion.bash
 
 # Atom
 # (manually copy stylesheet because atom can't use symlinks)
-echo "...Atom styles\n"
-rm $HOME/.atom/styles.less > /dev/null 2>&1
-cp $dotfiles/styles.less $HOME/.atom/styles.less
+echo "\nATOM STYLES"
+remove $HOME/.atom/styles.less
+copy $dotfiles/styles.less $HOME/.atom/styles.less
 
 # Launcher
-echo "...Launcher applescript\n"
+echo "\nLAUNCHER APPLESCRIPT"
 link $dotfiles/launcher.applescript $HOME/.launcher.applescript
 
 # Drive tools
-echo "...Drive tools\n"
+echo "\nDRIVE TOOLS"
 link $dotfiles/drive_mount.sh $HOME/.drive_mount.sh
 link $dotfiles/drive_unmount.sh $HOME/.drive_unmount.sh
 
 # Crontab
-# (show sample cron if user wants to see it)
-echo "...Crontab (must be installed manually)"
-tput sc
-echo "\n   Show sample? (y/n)"
-read -s input
-tput rc
-tput ed
+if [ $# -eq 0 ]; then
+  
+  tput sc                             # Save cursor position
+  echo "\nShow sample crontab? (y/n)" # Ask question
+  read -s input                       # Get input for question
+  tput rc                             # Restore cursor to saved position
+  tput el                             # Clear to end of line
+  tput cud1                           # Move cursor down one line
+  tput dl1                            # Delete one cursor line
+  tput dl1                            # Delete one cursor line
 
-if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
-  echo "\n\n"
-  cat ~/.dotfiles/crontab
+  # Show sample crontab if requested
+  if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
+    echo "SAMPLE CRONTAB\n"
+    cat ~/.dotfiles/crontab
+  fi
+
+# Hide question prompt if any command line argument is present
+# so we can this script via cron and ignore the question
+# example: `/usr/bin/env sh install.sh bypass`  
 else
+  
   echo ""
+
 fi
