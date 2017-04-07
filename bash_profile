@@ -1,4 +1,4 @@
-# Set PATH variable
+# Set PATH
 export PATH="/usr/local:/usr/local/bin:usr/local/sbin:/usr/local/share/npm/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 
@@ -6,7 +6,7 @@ export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 export DISPLAY=:0.0
 export PS1="\h:\w $ "
 
-# Open gems with TextMate
+# Open gems with Atom
 export GEM_OPEN_EDITOR=atom
 
 # Edit with nano
