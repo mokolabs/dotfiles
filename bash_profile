@@ -9,7 +9,7 @@ export PS1="\h:\w $ "
 # Open gems with TextMate
 export GEM_OPEN_EDITOR=atom
 
-# Edit with nano (because vim blows)
+# Edit with nano
 export EDITOR=nano
 
 # Use rake without stupid bundle rake prefix
