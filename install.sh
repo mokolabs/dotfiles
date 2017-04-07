@@ -13,37 +13,36 @@ link() {
 echo "UPDATING DOTFILES\n"
 cd $dotfiles && git pull > /dev/null 2>&1
 
-# bash
-echo "...Bash profile\n"
+# Bash
+echo "...Bash profile and completion\n"
 link $dotfiles/bash_profile $HOME/.bash_profile
-echo "...Bash completion\n"
 link $dotfiles/bash_completion $HOME/.bash_completion
 
-# ruby
-echo "...Git tools\n"
+# Ruby
+echo "...Git config and completion\n"
 link $dotfiles/gitconfig $HOME/.gitconfig
 link $dotfiles/git-completion.bash $HOME/.git-completion.bash
 
-# atom
+# Atom
 # (manually copy stylesheet because atom can't use symlinks)
 echo "...Atom styles\n"
 rm $HOME/.atom/styles.less > /dev/null 2>&1
 cp $dotfiles/styles.less $HOME/.atom/styles.less
 
-# launcher
+# Launcher
 echo "...Launcher applescript\n"
 link $dotfiles/launcher.applescript $HOME/.launcher.applescript
 
-# drive tools
+# Drive tools
 echo "...Drive tools\n"
 link $dotfiles/drive_mount.sh $HOME/.drive_mount.sh
 link $dotfiles/drive_unmount.sh $HOME/.drive_unmount.sh
 
-# crontab
-# (show sample cron if user wants one)
+# Crontab
+# (show sample cron if user wants to see it)
 echo "...Crontab (must be installed manually)"
 tput sc
-echo "\n   Show sample?"
+echo "\n   Show sample? (y/n)"
 read -s input
 tput rc
 tput ed
