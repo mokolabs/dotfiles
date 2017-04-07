@@ -58,9 +58,12 @@ done
 
 # Launch Ruby apps
 function start {
-  # Modern Rails/Sinatra apps
+  # Modern Ruby apps with a Procfile
   if [ -e ./Procfile ]; then
     bundle exec foreman start
+  # Sinatra apps named app.rb
+  elif [ -e ./app.rb ]; then
+    bundle exec shotgun config.ru -p 3000
   # Rails 2.3.x apps
   else
     script/server
