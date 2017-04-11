@@ -1,5 +1,8 @@
 # Set PATH
-export PATH="/usr/local:/usr/local/bin:usr/local/sbin:/usr/local/share/npm/bin:$PATH"
+export PATH="/usr/local:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 
 # Customize prompt
