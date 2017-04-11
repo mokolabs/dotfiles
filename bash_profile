@@ -9,6 +9,10 @@ export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 export DISPLAY=:0.0
 export PS1="\h:\w $ "
 
+# Use colors
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
 # Open gems with Atom
 export GEM_OPEN_EDITOR=atom
 
