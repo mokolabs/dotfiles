@@ -4,8 +4,10 @@ export PATH="/usr/local/sbin:$PATH"                                      # Homeb
 export PATH="/usr/local/share/npm/bin:$PATH"                             # Node
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH" # Postgres.app
 
-# Customize prompt
+# Set X11 display
 export DISPLAY=:0.0
+
+# Customize prompt
 export PS1="\h:\w $ "
 
 # Use colors
