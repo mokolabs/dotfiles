@@ -122,7 +122,7 @@ function switch () {
 }
 
 # Switch to correct Heroku account when navigating into or within ~/Sites
-# by overriding the cd command to run cd and then switch
+# by overriding the cd command to first change directories and then switch heroku account
 function cd () {
   # Always run default cd command
   builtin cd "$@";
