@@ -69,6 +69,9 @@ for a in `cd ~/Sites; ls | grep -Ev "heroku"`; do
   complete -F _complete_alias $a;
 done
 
+# Aliases (heroku)
+alias heroku=set_account_before_running_heroku_command;
+
 # Launch Ruby apps
 function start {
   # Modern Ruby apps with a Procfile
@@ -84,10 +87,14 @@ function start {
 }
 
 # Switch Heroku accounts
-function cd () { builtin cd "$@" && switch; }
 function switch () {
+  # SWITCH ACCOUNT BY REQUEST
+  #  You can force switch an Heroku account by passing an argument to switch()
+  #  `switch cinema`       -> switch to cinema treasures account
+  #  `switch graffletopia` -> switch to graffletopia account
+  #  `switch mokolabs`     -> switch to mokolabs account
   if [ -n "$1" ]; then
-    if [ $1 == "cinema" ] || [ $1 == "beekman" ]; then
+    if [ $1 == "cinema" ] || [ $1 == "cinematreasures" ] || [ $1 == "beekman" ]; then
       echo 'switched to cinema'
       /usr/local/heroku/bin/heroku accounts:set cinema
     fi
@@ -101,6 +108,7 @@ function switch () {
     fi
   fi
 
+  # SWITCH ACCOUNT AUTOMATICALLY
   # Cinema Treasures
   if [[ "$PWD" =~ beekman ]]; then
     /usr/local/heroku/bin/heroku accounts:set cinema
@@ -112,11 +120,31 @@ function switch () {
     /usr/local/heroku/bin/heroku accounts:set mokolabs
   fi
 }
-function set_account_before_running_heroku_command(){
+
+# Switch to correct Heroku account when navigating into or within ~/Sites
+# by overriding the cd command to run cd and then switch
+function cd () {
+  # Always run default cd command
+  builtin cd "$@";
+
+  # And then optionally...
+  # Switch Heroku accounts when navigating directories within ~Sites
+  if [[ "$PWD" =~ Sites ]]; then
+    switch;
+  # Switch Heroku accounts when changing to a directory within ~Sites
+  elif [[ "$1" =~ Sites ]]; then
+    switch;
+  fi
+}
+
+# Verify Heroku account is correct before running heroku command
+function set_account_before_running_heroku_command () {
+  # Switch Heroku account
   switch;
+  
+  # Then run heroku command as intended
   /usr/local/heroku/bin/heroku "$@";
 }
-alias heroku=set_account_before_running_heroku_command;
 
 # Bounce WiFi
 function bounce {
