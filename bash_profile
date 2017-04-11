@@ -18,8 +18,16 @@ export GEM_OPEN_EDITOR=atom
 # Edit with nano
 export EDITOR=nano
 
-# Use rake without stupid bundle rake prefix
-rake() { if [ -e ./Gemfile.lock ]; then bundle exec rake "$@"; else /usr/bin/env rake "$@"; fi; }
+# Simplify rake command
+rake() {
+  # If Gemfile is present, you can omit `bundle exec` prefix
+  if [ -e ./Gemfile.lock ]; then 
+    bundle exec rake "$@";
+  # Otherwise, use rake normally
+  else
+    /usr/bin/env rake "$@";
+  fi
+}
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
