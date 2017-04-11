@@ -1,9 +1,8 @@
 # Set PATH
-export PATH="/usr/local:$PATH"
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/share/npm/bin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
+export PATH="/usr/local/heroku/bin:$PATH"                                # Heroku CLI
+export PATH="/usr/local/sbin:$PATH"                                      # Homebrew
+export PATH="/usr/local/share/npm/bin:$PATH"                             # Node
+export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH" # Postgres.app
 
 # Customize prompt
 export DISPLAY=:0.0
@@ -24,9 +23,6 @@ rake() { if [ -e ./Gemfile.lock ]; then bundle exec rake "$@"; else /usr/bin/env
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 # Auto-trash ~/Applications
 [ -d "~Applications" ] || mv ~/Applications/ ~/.Trash > /dev/null 2>&1
