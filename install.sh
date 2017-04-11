@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
+# Get path for .dotfiles
 dotfiles="$HOME/.dotfiles"
 
+# Define some functions
 copy() {
   # copy file
   echo "... copied file from $1 -> $2";
