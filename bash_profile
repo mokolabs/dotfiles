@@ -52,6 +52,12 @@ alias dotfilesup="/usr/bin/env sh ~/.dotfiles/install.sh bypass"
 alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
 alias dropbox="mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak; killall Finder"
 
+# Aliases (navigation)
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 # Aliases (backup)
 alias backup="cd ~/Library/Backup/Scripts"
 alias daily="/usr/sbin/diskutil mount Daily &> /dev/null"
