@@ -8,7 +8,7 @@ export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH" # Postg
 export DISPLAY=:0.0
 
 # Customize prompt
-export PS1="\h:\w $ "
+export PS1="\h:\w \$(get_git_branch)$ "
 
 # Use colors
 export CLICOLOR=1
@@ -159,4 +159,9 @@ function set_account_before_running_heroku_command () {
 function bounce {
   /usr/sbin/networksetup -setairportpower en1 off;
   /usr/sbin/networksetup -setairportpower en1 on;
+}
+
+# Get current git branch
+function get_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
 }
