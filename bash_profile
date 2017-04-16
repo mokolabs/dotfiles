@@ -14,6 +14,9 @@ export PS1="\h:\w $ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+# Use case insensitivity for tab completion
+bind "set completion-ignore-case on"
+
 # Open gems with Atom
 export GEM_OPEN_EDITOR=atom
 
