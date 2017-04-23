@@ -52,6 +52,10 @@ alias dotfilesup="/usr/bin/env sh ~/.dotfiles/install.sh bypass"
 alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
 alias dropbox="mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak; killall Finder"
 
+# Alias (notification center utility)
+alias NCutil="/Users/patrick/.dotfiles/NCutil.py"
+alias ncutil="/Users/patrick/.dotfiles/NCutil.py"
+
 # Aliases (navigation)
 alias ..='cd ..'
 alias ...='cd ../..'
