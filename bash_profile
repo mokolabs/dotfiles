@@ -52,10 +52,6 @@ alias dotfilesup="/usr/bin/env sh ~/.dotfiles/install.sh bypass"
 alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
 alias dropbox="mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak; killall Finder"
 
-# Alias (notification center utility)
-alias NCutil="/Users/patrick/.dotfiles/NCutil.py"
-alias ncutil="/Users/patrick/.dotfiles/NCutil.py"
-
 # Aliases (navigation)
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -168,4 +164,14 @@ function bounce {
 # Get current git branch
 function get_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+}
+
+
+# Tweak new message notification style for Messages app
+function messages {
+  if [[ "$1" == "off" ]]; then
+    /Users/patrick/.dotfiles/NCutil.py -a none com.apple.iChat
+  elif [[ "$1" == "on" ]]; then
+    /Users/patrick/.dotfiles/NCutil.py -a banners com.apple.iChat
+  fi
 }
