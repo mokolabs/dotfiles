@@ -97,6 +97,7 @@ function start {
     script/server
   fi
 }
+alias s="start"
 
 # Switch Heroku accounts
 function switch () {
