@@ -81,6 +81,9 @@ done
 # Aliases (heroku)
 alias heroku=set_account_before_running_heroku_command;
 
+#Aliases (atom)
+alias a="atom"
+
 # Launch Ruby apps
 function start {
   # Modern Ruby apps with a Procfile
