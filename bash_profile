@@ -141,12 +141,18 @@ function cd () {
   builtin cd "$@";
 
   # And then optionally...
+  
   # Switch Heroku accounts when navigating directories within ~Sites
   if [[ "$PWD" =~ Sites ]]; then
     switch;
   # Switch Heroku accounts when changing to a directory within ~Sites
   elif [[ "$1" =~ Sites ]]; then
     switch;
+  fi
+  
+  # Start app
+  if [[ "$2" =~ "s" ]]; then
+    start;
   fi
 }
 
