@@ -82,8 +82,10 @@ done
 # Aliases (heroku)
 alias heroku=set_account_before_running_heroku_command;
 
-#Aliases (atom)
-alias a="atom ."
+# Open current directory in Atom
+function a() {
+  /usr/local/bin/atom $PWD
+}
 
 # Launch Ruby apps
 function start {
@@ -155,6 +157,8 @@ function cd () {
   if [[ "$2" =~ "s" ]]; then
     clear;
     start;
+  elif [[ "$2" =~ "a" ]]; then
+    a;
   elif [[ "$2" =~ "c" ]]; then
     clear;
   fi
