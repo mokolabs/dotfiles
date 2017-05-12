@@ -71,6 +71,7 @@ alias launch="osascript ~/.launcher.applescript"
 alias sites="cd ~/Sites/"
 alias cinema="cd ~/Sites/beekman"
 alias crowley="cd ~/Sites/crowleyportraits"
+alias g="cd ~/Sites/graffletopia"
 alias graffle="cd ~/Sites/graffletopia"
 alias moko="cd ~/Sites/mokolabs"
 for a in `cd ~/Sites; ls | grep -Ev "heroku"`; do
