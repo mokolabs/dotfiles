@@ -153,6 +153,7 @@ function cd () {
   
   # Start app
   if [[ "$2" =~ "s" ]]; then
+    clear;
     start;
   fi
 }
