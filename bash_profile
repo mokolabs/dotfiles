@@ -155,6 +155,8 @@ function cd () {
   if [[ "$2" =~ "s" ]]; then
     clear;
     start;
+  elif [[ "$2" =~ "c" ]]; then
+    clear;
   fi
 }
 
