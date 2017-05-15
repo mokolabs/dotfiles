@@ -41,3 +41,12 @@ PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.a
 # Update Photos
 0       20      *       *       *       /usr/bin/open -a Photos
 15      20      *       *       *       /usr/bin/osascript -e 'quit app "Photos"'
+
+# Reset Wifi once per day (at 7am)
+0       7       *       *       *       /usr/sbin/networksetup -setairportpower en1 off; /usr/sbin/networksetup -setair$
+
+# Update dotfiles every hour
+0       *       *       *       *       source /Users/patrick/.bash_profile; /bin/sh /Users/patrick/.dotfiles/install.s$
+
+# Remove Dropbox checkmarks once per day
+0       7       *       *       *       /bin/mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resour$
