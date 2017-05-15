@@ -1,7 +1,6 @@
 # Set PATH
 export PATH="/usr/local/heroku/bin:$PATH"                                # Heroku CLI
 export PATH="/usr/local/sbin:$PATH"                                      # Homebrew
-export PATH="/usr/local/share/npm/bin:$PATH"                             # Node
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH" # Postgres.app
 
 # Set X11 display
