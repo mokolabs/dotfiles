@@ -14,5 +14,5 @@ You can update your dotfiles automatically by adding the following to your cront
 
 ```
 # Update dotfiles every hour
-0       *       *       *       *       /usr/bin/env sh /Users/patrick/.dotfiles/install.sh bypass
+0       *       *       *       *       source /Users/patrick/.bash_profile; /bin/sh /Users/patrick/.dotfiles/install.sh bypass
 ```
