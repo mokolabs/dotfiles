@@ -49,7 +49,6 @@ alias desktop="cd ~/Desktop"
 alias dotfiles="cd ~/.dotfiles"
 alias dotfilesup="/usr/bin/env sh ~/.dotfiles/install.sh bypass"
 alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
-alias dropbox="sh ~/.dropbox.remover.sh"
 
 # Aliases (navigation)
 alias ..='cd ..'
@@ -84,6 +83,17 @@ alias heroku=set_account_before_running_heroku_command;
 # Open current directory in Atom
 function a() {
   /usr/local/bin/atom $PWD
+}
+
+# Remove (or restore) dropbox up-to-date checkmark icons
+function dropbox() {
+  if [[ "$1" == "restore" ]]; then
+    mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns && killall Finder
+  elif [[ "$1" == "remove" ]]; then
+    sh ~/.dropbox.remover.sh
+  else
+    sh ~/.dropbox.remover.sh
+  fi
 }
 
 # Launch Ruby apps
