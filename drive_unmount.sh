@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # FUNCTIONS
 unmount_all () {

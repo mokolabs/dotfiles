@@ -44,5 +44,5 @@ PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.a
 # Update dotfiles every hour
 0       *       *       *       *       source /Users/patrick/.bash_profile; /bin/sh /Users/patrick/.dotfiles/install.s$
 
-# Remove Dropbox checkmarks once per day
-0       7       *       *       *       /bin/mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resour$
+# Remove Dropbox checkmarks every minutes
+*       *       *       *       *       /bin/bash /Users/patrick/.dropbox.remover.sh

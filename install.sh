@@ -57,6 +57,10 @@ echo "\nDRIVE TOOLS"
 link $dotfiles/drive_mount.sh $HOME/.drive_mount.sh
 link $dotfiles/drive_unmount.sh $HOME/.drive_unmount.sh
 
+# Dropbox
+echo "\nDROPBOX"
+link $dotfiles/dropbox.remover.sh $HOME/.dropbox.remover.sh
+
 # Crontab
 if [ $# -eq 0 ]; then
   
