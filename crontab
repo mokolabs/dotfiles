@@ -4,10 +4,6 @@ MAILTO=""
 # Load ruby via .rbenv (so we can run ruby-based backup scripts)
 PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.app/Contents/MacOS/bin:/usr/local:/usr/l$
 
-# Run email filters once an hour
-1       *       *       *       *       /usr/bin/open -j /Applications/Mail.app
-2       *       *       *       *       /usr/bin/lsappinfo info -only name `lsappinfo front` | /usr/bin/grep Mail > /de$
-
 # Sleep display (when waking to backup)
 1       7       *       *       *       /Applications/SleepDisplay.app/Contents/MacOS/sleepdisplay
 
