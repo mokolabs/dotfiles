@@ -46,8 +46,8 @@ fi
 
 # Aliases (system)
 alias desktop="cd ~/Desktop"
+alias dots="cd ~/.dotfiles"
 alias dotfiles="cd ~/.dotfiles"
-alias dotfilesup="/usr/bin/env sh ~/.dotfiles/install.sh bypass"
 alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
 
 # Aliases (navigation)
@@ -152,7 +152,7 @@ function cd () {
   # Always run default cd command
   builtin cd "$@";
 
-  # And then optionally...
+  # Switch Heroku accounts (if needed)
   
   # Switch Heroku accounts when navigating directories within ~Sites
   if [[ "$PWD" =~ Sites ]]; then
@@ -161,15 +161,22 @@ function cd () {
   elif [[ "$1" =~ Sites ]]; then
     switch;
   fi
+
+  # Run optional actions if second argument is present
   
-  # Start app
-  if [[ "$2" =~ "s" ]]; then
+  # Start server (and clear previous terminal output)
+  if [[ "$2" == "s" ]]; then
     clear;
     start;
-  elif [[ "$2" =~ "a" ]]; then
+  # Open directory in Atom
+  elif [[ "$2" == "a" ]]; then
     a;
-  elif [[ "$2" =~ "c" ]]; then
+  # Clear previous terminal output
+  elif [[ "$2" == "c" ]]; then
     clear;
+  # Sync dotfiles
+  elif [[ "$2" == "sync" ]]; then
+    /usr/bin/env sh ~/.dotfiles/install.sh bypass;
   fi
 }
 
