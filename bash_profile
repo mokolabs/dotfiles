@@ -190,9 +190,13 @@ function set_account_before_running_heroku_command () {
 }
 
 # Bounce WiFi
-function bounce {
-  /usr/sbin/networksetup -setairportpower en1 off;
-  /usr/sbin/networksetup -setairportpower en1 on;
+function bounce() {
+  if [ "$1" == "bluetooth" ] || [ "$1" == "blue" ]; then
+    /usr/local/bin/blueutil off; /usr/local/bin/blueutil on
+  else
+    /usr/sbin/networksetup -setairportpower en1 off;
+    /usr/sbin/networksetup -setairportpower en1 on;
+  fi
 }
 
 # Get current git branch
