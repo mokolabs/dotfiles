@@ -37,11 +37,15 @@ echo "\nBASH PROFILE AND COMPLETION"
 link $dotfiles/bash_profile $HOME/.bash_profile
 link $dotfiles/bash_completion $HOME/.bash_completion
 
-# Ruby
+# Git
 echo "\nGIT CONFIG AND COMPLETION"
 link $dotfiles/gitconfig $HOME/.gitconfig
 link $dotfiles/gitignore $HOME/.gitignore
 link $dotfiles/git-completion.bash $HOME/.git-completion.bash
+
+# Ruby
+echo "\nRUBY CONFIG"
+link $dotfiles/gemrc $HOME/.gemrc
 
 # Atom
 # (manually copy stylesheet because atom can't use symlinks)
