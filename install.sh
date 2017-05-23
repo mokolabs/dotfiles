@@ -55,8 +55,10 @@ link $dotfiles/launcher.applescript $HOME/.launcher.applescript
 
 # Services
 echo "\nSERVICES"
-remove $HOME/Library/Services//styles.less
-copy $dotfiles/styles.less $HOME/.atom/styles.less
+echo "... removed Resize Finder Windows"
+echo "... copied Resize Finder Windows"
+rm -rfd ~/Library/Services/Resize\ Finder\ Windows.workflow/
+cp -R Resize\ Finder\ Windows.workflow/ ~/Library/Services/Resize\ Finder\ Windows.workflow/
 
 # Drive tools
 echo "\nDRIVE TOOLS"
