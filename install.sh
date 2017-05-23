@@ -40,7 +40,7 @@ link $dotfiles/bash_completion $HOME/.bash_completion
 # Ruby
 echo "\nGIT CONFIG AND COMPLETION"
 link $dotfiles/gitconfig $HOME/.gitconfig
-link $dotfiles/gitignore.bash $HOME/.gitignore.bash
+link $dotfiles/gitignore $HOME/.gitignore
 link $dotfiles/git-completion.bash $HOME/.git-completion.bash
 
 # Atom
