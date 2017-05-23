@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/bin/bash
+source $HOME/.bash_profile
 
 # Get path for .dotfiles
 dotfiles="$HOME/.dotfiles"
