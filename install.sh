@@ -13,7 +13,7 @@ copy() {
 remove() {
   # remove file
   echo "... removed $1";
-  rm $1 > /dev/null 2>&1
+  rm -rfd $1 > /dev/null 2>&1
 }
 
 link() {
@@ -52,6 +52,11 @@ copy $dotfiles/styles.less $HOME/.atom/styles.less
 # Launcher
 echo "\nLAUNCHER APPLESCRIPT"
 link $dotfiles/launcher.applescript $HOME/.launcher.applescript
+
+# Services
+echo "\nSERVICES"
+remove $HOME/Library/Services//styles.less
+copy $dotfiles/styles.less $HOME/.atom/styles.less
 
 # Drive tools
 echo "\nDRIVE TOOLS"
