@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>417</string>
+	<string>428</string>
 	<key>AMApplicationVersion</key>
-	<string>2.6</string>
+	<string>2.7</string>
 	<key>AMDocumentVersion</key>
 	<string>2</string>
 	<key>actions</key>
@@ -51,9 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run		tell application "Finder"		activate				if (count of Finder windows) is greater than 0 then						set macintosh to computer name of (system info)						if macintosh is "iMac Retina" then				set bounds of first window to {901.0, 441.0, 1659.0, 879.0}			end if
-			
-						if macintosh is "iMac" then				set bounds of first window to {901.0, 441.0, 1659.0, 879.0}			end if						if macintosh is "MacBook Air" then				set bounds of first window to {335, 210, 1105, 670}			end if						if macintosh is "MacBook Air (Spare)" then				set bounds of first window to {335, 210, 1105, 670}			end if						set the sidebar width of first window to 142		end if	end tell	end run</string>
+					<string>on run		tell application "Finder"		activate				if (count of Finder windows) is greater than 0 then						set macintosh to computer name of (system info)						if macintosh is "iMac Retina" then				set bounds of first window to {901.0, 441.0, 1659.0, 879.0}			end if						if macintosh is "iMac" then				set bounds of first window to {901.0, 441.0, 1659.0, 879.0}			end if						if macintosh is "MacBook Air" then				set bounds of first window to {335, 210, 1105, 670}			end if						if macintosh is "MacBook Air (Spare)" then				set display_bounds to bounds of window of desktop				set display_width to item 3 of display_bounds								if display_width = 2560 then					set bounds of first window to {902, 434, 1660, 894}				else					set bounds of first window to {298, 144, 1068, 604}				end if			end if						set the sidebar width of first window to 142		end if			end tell	end run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
