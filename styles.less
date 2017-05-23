@@ -24,8 +24,13 @@ atom-text-editor .selection .region {
 
 
 // DOCK
-.atom-dock-toggle-button-visible{
-  display: none;
+
+// Hide dock toggle (unless we are hovering over it)
+.atom-dock-toggle-button-visible {
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 
