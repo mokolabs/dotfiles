@@ -7,3 +7,5 @@
 	account = mokolabs
 [credential]
 	helper = osxkeychain
+[core]
+	excludesfile = /Users/patrick/.gitignore
