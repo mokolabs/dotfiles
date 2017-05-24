@@ -33,7 +33,7 @@ link() {
 echo "\nUPDATING DOTFILES"
 echo "... Switching to ~/.dotfiles directory"
 echo "... Pulling changes from master repo"
-cd $dotfiles && git pull > /dev/null 2>&1
+ssh-agent bash -c "ssh-add -A /Users/patrick/.ssh/id_rsa; cd /Users/patrick/.dotfiles; git pull -q origin master;"
 
 # Bash
 echo "\nBASH PROFILE AND COMPLETION"
