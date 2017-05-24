@@ -49,6 +49,8 @@ alias desktop="cd ~/Desktop"
 alias dots="cd ~/.dotfiles"
 alias dotfiles="cd ~/.dotfiles"
 alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
+alias reload="source ~/.bash_profile"
+alias reset="source ~/.bash_profile"
 
 # Aliases (navigation)
 alias ..='cd ..'
