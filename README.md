@@ -13,6 +13,6 @@ Just a few basic dotfiles that I like to use.
 You can update your dotfiles automatically by adding the following to your crontab:
 
 ```
-# Update dotfiles every hour
-0       *       *       *       *       source /Users/patrick/.bash_profile; /bin/sh /Users/patrick/.dotfiles/install.sh bypass
+# Update dotfiles every five minutes
+*/5     *       *       *       *       /bin/sh /Users/patrick/.dotfiles/install.sh bypass
 ```
