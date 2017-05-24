@@ -31,6 +31,7 @@ link() {
 
 # Get latest changes
 echo "\nUPDATING DOTFILES"
+echo "... Loading SSH key"
 echo "... Switching to ~/.dotfiles directory"
 echo "... Pulling changes from master repo"
 ssh-agent bash -c "ssh-add -A /Users/patrick/.ssh/id_rsa; cd /Users/patrick/.dotfiles; git pull -q origin master;"
