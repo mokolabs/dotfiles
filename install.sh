@@ -1,7 +1,7 @@
 #!/bin/bash
 source $HOME/.bash_profile
 
-say "goodbye"
+say "hello again"
 
 # Get path for .dotfiles
 dotfiles="$HOME/.dotfiles"
