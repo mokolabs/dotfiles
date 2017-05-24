@@ -1,6 +1,8 @@
 #!/bin/bash
 source $HOME/.bash_profile
 
+say "hello"
+
 # Get path for .dotfiles
 dotfiles="$HOME/.dotfiles"
 
