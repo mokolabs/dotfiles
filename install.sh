@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# Load .bash_profile
 source $HOME/.bash_profile
 
 # Get path for .dotfiles
