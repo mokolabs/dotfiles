@@ -83,7 +83,7 @@ if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
   echo "\nDROPBOX"
   link $dotfiles/dropbox.remover.sh $HOME/.dropbox.remover.sh
   
-  # Crontab
+  # Crontab (optional)
   if [ $# -eq 0 ]; then
     
     tput sc                             # Save cursor position
@@ -100,16 +100,19 @@ if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
       echo "SAMPLE CRONTAB\n"
       cat ~/.dotfiles/crontab
     fi
-  
-  # Hide question prompt if any command line argument is present
-  # so we can this script via cron and ignore the question
-  # example: `/usr/bin/env sh install.sh bypass`  
+
   else
     
+    # Hide question prompt if any command line argument is present
+    # so we can use this script via cron and ignore the cron question
+    # example: `/usr/bin/env sh install.sh bypass`
     echo ""
   
   fi
 
+  # Notify user we've updated dotfiles
+  terminal-notifier -sound default -title 'Dotfiles Updated' -message "Your dotfiles have been updated"
+  
 # If no changes found, leave dotfiles as-is
 else
   
