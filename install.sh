@@ -31,16 +31,16 @@ link() {
 
 # Check for changes
 echo "\nCHECKING FOR CHANGES"
-OUTPUT="$(ssh-agent bash -c 'ssh-add -A /Users/patrick/.ssh/id_rsa /dev/null 2>&1; cd /Users/patrick/.dotfiles; git status -u no | grep "up-to-date";')";
+OUTPUT="$(ssh-agent bash -c 'ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2>&1; cd /Users/patrick/.dotfiles; git status -u no | grep "up-to-date";')";
 
-# If changes found, update dotfiles
-if [ -z "$OUTPUT" ] ; then
+# If changes found (or `force` param is passed), update dotfiles
+if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
 
   echo "\nUPDATING DOTFILES"
   echo "... Loading SSH key"
   echo "... Switching to ~/.dotfiles directory"
   echo "... Pulling changes from master repo"
-  (ssh-agent bash -c "ssh-add -A /Users/patrick/.ssh/id_rsa; cd /Users/patrick/.dotfiles; git pull -q origin master;";
+  ssh-agent bash -c "ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2>&1; cd /Users/patrick/.dotfiles; git pull -q origin master;";
   
   # Bash
   echo "\nBASH PROFILE AND COMPLETION"
@@ -109,10 +109,10 @@ if [ -z "$OUTPUT" ] ; then
     echo ""
   
   fi
-  
+
 # If no changes found, leave dotfiles as-is
 else
-
-  echo "No changes found!";
-
+  
+  echo "\nNo changes found!\n";
+  
 fi
