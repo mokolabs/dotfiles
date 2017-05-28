@@ -7,6 +7,8 @@ tell application "Terminal"
 	
 	# Reload bash and clear each window
 	repeat with win in windows_list
-		do script "reload; clear;" in win
+		if win is not busy then
+			do script "reload; clear;" in win
+		end if
 	end repeat
 end tell
