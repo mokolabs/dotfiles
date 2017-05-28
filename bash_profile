@@ -200,6 +200,15 @@ function diff () {
   fi
 }
 
+# Use diff alias for git log if directory is a git repo
+function log () {
+  if [ -d "$PWD/.git" ]; then
+    git log "$@"
+  else
+    /usr/bin/log
+  fi
+}
+
 # Verify Heroku account is correct before running heroku command
 function set_account_before_running_heroku_command () {
   # Switch Heroku account
