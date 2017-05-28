@@ -58,6 +58,15 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+# Aliases (git)
+alias add="git add"
+alias checkout="git checkout"
+alias commit="git commit"
+alias pull="git pull"
+alias push="git push"
+alias stash="git stash"
+alias status="git status"
+
 # Aliases (backup)
 alias backup="cd ~/Library/Backup/Scripts"
 alias daily="/usr/sbin/diskutil mount Daily &> /dev/null"
