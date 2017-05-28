@@ -8,7 +8,7 @@ dotfiles="$HOME/.dotfiles"
 
 # Define some functions
 copy() {
-  # copy file
+  # copy file (when we can't use symlinks)
   echo "... copied file from $1 -> $2";
   cp -R $1 $2
 }
@@ -57,11 +57,10 @@ if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
   echo "\nRUBY CONFIG"
   link $dotfiles/gemrc $HOME/.gemrc
   
-  # Atom
-  # (manually copy stylesheet because atom can't use symlinks)
-  echo "\nATOM STYLES"
+  echo "\nATOM CONFIG"
   remove $HOME/.atom/styles.less
   copy $dotfiles/styles.less $HOME/.atom/styles.less
+  link $dotfiles/.atom_handler.app $HOME/.atom_handler.app
   
   # Launcher
   echo "\nLAUNCHER APPLESCRIPT"
