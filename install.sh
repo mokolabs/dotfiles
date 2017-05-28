@@ -111,7 +111,11 @@ if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
   fi
 
   # Notify user we've updated dotfiles
-  terminal-notifier -sound default -title 'Dotfiles Updated' -message "Your dotfiles have been updated"
+  format="+%l:%M %p";           # customize time format
+  timestamp=$(date "$format");  # get current time
+  timestamp=${timestamp/AM/am}; # lowercase AM
+  timestamp=${timestamp/PM/pm}; # lowercase PM
+  terminal-notifier -sound default -title 'Dotfiles Updated' -message "Your dotfiles were updated at $timestamp."
   
 # If no changes found, leave dotfiles as-is
 else
