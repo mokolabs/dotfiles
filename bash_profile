@@ -210,6 +210,15 @@ function log () {
   fi
 }
 
+# Use reset alias for git reset if directory is a git repo
+function reset () {
+  if [ -d "$PWD/.git" ]; then
+    git reset "$@"
+  else
+    /usr/bin/reset
+  fi
+}
+
 # Verify Heroku account is correct before running heroku command
 function set_account_before_running_heroku_command () {
   # Switch Heroku account
