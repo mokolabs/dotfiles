@@ -60,6 +60,7 @@ alias .....='cd ../../../..'
 
 # Aliases (git)
 alias add="git add"
+alias branch="git branch"
 alias checkout="git checkout"
 alias commit="git commit"
 alias pull="git pull"
