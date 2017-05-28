@@ -1,8 +1,11 @@
 # Disable local mail
 MAILTO=""
 
-# Load ruby via .rbenv (so we can run ruby-based backup scripts)
-PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.app/Contents/MacOS/bin:/usr/local:/usr/l$
+# Load bash shell (so we can use scripts with .bash_profile settings)
+SHELL=/bin/bash
+
+
+# ACTIONS
 
 # Sleep display (when waking to backup)
 1       7       *       *       *       /Applications/SleepDisplay.app/Contents/MacOS/sleepdisplay
@@ -16,18 +19,6 @@ PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.a
 # Darken screen at night
 # 30    17      *       *       *       /usr/bin/osascript /Users/patrick/Library/Scripts/Toggle\ Shades.app
 
-# Backup Cinema Treasures and Graffletopia databases
-1       18      *       *       *       /Users/patrick/.rbenv/shims/ruby /Users/patrick/Library/Backup/Scripts/sites/ci$
-1       18      *       *       *       /Users/patrick/.rbenv/shims/ruby /Users/patrick/Library/Backup/Scripts/sites/gr$
-
-# Backup Graffletopia assets locally
-1       18      *       *       *       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com/production /Users/patri$
-
-# Backup Graffletopia assets online (by syncing them to another AWS account)
-5       18      *       *       *       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.daily$
-10      18      *       *       6       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.weekl$
-15      18      1       *       *       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.month$
-
 # Mute volume before bedtime
 1       20      *       *       *       /usr/bin/osascript -e 'set volume 0'
 
@@ -39,10 +30,31 @@ PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.a
 15      20      *       *       *       /usr/bin/osascript -e 'quit app "Photos"'
 
 # Reset Wifi once per day (at 7am)
-0       7       *       *       *       /usr/sbin/networksetup -setairportpower en1 off; /usr/sbin/networksetup -setair$
+0       7       *       *       *       /usr/sbin/networksetup -setairportpower en1 off; /usr/sbin/networksetup -setairportpower en1 on
 
 # Update dotfiles every hour
 0       *       *       *       *       source /Users/patrick/.bash_profile; /bin/sh /Users/patrick/.dotfiles/install.s$
 
 # Remove Dropbox checkmarks every minutes
 *       *       *       *       *       /bin/sh /Users/patrick/.dropbox.remover.sh
+
+# Update dotfiles every five minutes
+*/5       *       *       *       *       /bin/sh /Users/patrick/.dotfiles/install.sh bypass
+
+
+# BACKUP (at 7pm daily)
+
+# Load ruby via .rbenv (so we can run ruby-based backup scripts)
+PATH="/usr/local/heroku/bin:/Users/patrick/.rbenv/shims:/Applications/Postgres.app/Contents/MacOS/bin:/usr/local:/usr/local/bin:usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH"
+
+# Backup Cinema Treasures and Graffletopia databases
+1       18      *       *       *       /Users/patrick/.rbenv/shims/ruby /Users/patrick/Library/Backup/Scripts/sites/cinematreasures.rb
+1       18      *       *       *       /Users/patrick/.rbenv/shims/ruby /Users/patrick/Library/Backup/Scripts/sites/graffletopia.rb
+
+# Backup Graffletopia assets locally
+1       18      *       *       *       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com/production /Users/patrick/Documents/Graffletopia/Backup/AWS --delete --acl public-read
+
+# Backup Graffletopia assets online (by syncing them to another AWS account)
+5       18      *       *       *       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.daily --delete --acl public-read
+10      18      *       *       6       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.weekly --delete --acl public-read
+15      18      1       *       *       /usr/local/bin/aws s3 sync s3://assets.graffletopia.com s3://graffletopia.monthly --delete --acl public-read
