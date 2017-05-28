@@ -44,6 +44,7 @@ if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
   
   # Bash
   echo "\nBASH PROFILE AND COMPLETION"
+  link $dotfiles/bash_profile $HOME/.bash
   link $dotfiles/bash_profile $HOME/.bash_profile
   link $dotfiles/bash_completion $HOME/.bash_completion
   
