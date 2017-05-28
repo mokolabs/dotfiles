@@ -109,6 +109,9 @@ if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
     echo ""
   
   fi
+  
+  # Reload shell
+  osascript reload_terminal.applescript > /dev/null 2>&1
 
   # Notify user we've updated dotfiles
   format="+%l:%M %p";           # customize time format
