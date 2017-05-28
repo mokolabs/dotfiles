@@ -1,0 +1,9 @@
+# Run email filters once an hour (from 7am to 2pm)
+1       7-13    *       *       *       /bin/ps aux | /usr/bin/grep "Mail" | /usr/bin/grep -v "grep" || /usr/bin/open -j /Applications/Mail.app
+2       7-13    *       *       *       /usr/bin/lsappinfo info -only name `lsappinfo front` | /usr/bin/grep Mail > /dev/null || /usr/bin/osascript -e 'quit app "Mail"'
+
+# Run email filters every 5 minutes (from 7pm to 7am)
+*/5     19-23   *       *       *       /usr/bin/open -j /Applications/Mail.app
+*/6     19-23   *       *       *       /usr/bin/osascript -e 'quit app "Mail"'
+*/5     0-6     *       *       *       /usr/bin/open -j /Applications/Mail.app
+*/6     0-6     *       *       *       /usr/bin/osascript -e 'quit app "Mail"'
