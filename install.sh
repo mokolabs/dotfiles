@@ -69,10 +69,8 @@ if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
   
   # Services
   echo "\nSERVICES"
-  echo "... removed Resize Finder Windows"
   echo "... copied Resize Finder Windows"
-  rm -rfd ~/Library/Services/Resize\ Finder\ Windows.workflow/
-  cp -R Resize\ Finder\ Windows.workflow/ ~/Library/Services/Resize\ Finder\ Windows.workflow/
+  cp -fR Resize\ Finder\ Windows.workflow/ ~/Library/Services/Resize\ Finder\ Windows.workflow/
   
   # Drive tools
   echo "\nDRIVE TOOLS"
