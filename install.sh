@@ -77,6 +77,13 @@ if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
   link $dotfiles/drive_mount.sh $HOME/.drive_mount.sh
   link $dotfiles/drive_unmount.sh $HOME/.drive_unmount.sh
   
+  # Backup
+  echo "\nBACKUP TOOLS"
+  mkdir -p $HOME/Library/Backup/Scripts/
+  mkdir -p $HOME/Library/Logs/Backup/
+  link $dotfiles/backup/carboncopycloner $HOME/Library/Backup/Scripts/carboncopycloner
+  link $HOME/Library/Logs/Backup $HOME/Library/Backup/Logs
+
   # Dropbox
   echo "\nDROPBOX"
   link $dotfiles/dropbox.remover.sh $HOME/.dropbox.remover.sh
