@@ -31,10 +31,10 @@ link() {
 
 # Check for changes
 echo "\nCHECKING FOR CHANGES"
-OUTPUT="$(ssh-agent bash -c 'ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2>&1; cd /Users/patrick/.dotfiles; git status -u no | grep "up-to-date";')";
+OUTPUT="$(ssh-agent bash -c 'ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2>&1; cd /Users/patrick/.dotfiles; git fetch origin; git status -u no | grep "behind";')";
 
 # If changes found (or `force` param is passed), update dotfiles
-if [ -z "$OUTPUT" ] || [ "$1" == "force" ]; then
+if [ -n "$OUTPUT" ] || [ "$1" == "force" ]; then
 
   echo "\nUPDATING DOTFILES"
   echo "... Loading SSH key"
