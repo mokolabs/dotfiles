@@ -67,6 +67,7 @@ alias pull="git pull"
 alias push="git push"
 alias stash="git stash"
 alias status="git status"
+alias diffc="git diff --cached"
 
 # Aliases (backup)
 alias backup="cd ~/Library/Backup/Scripts"
