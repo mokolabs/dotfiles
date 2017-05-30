@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# say "hello";
-
 # Load .bash_profile
 source $HOME/.bash_profile
 
@@ -32,6 +30,7 @@ link() {
 }
 
 # Check for changes
+say "checking for changes"
 echo "\nCHECKING FOR CHANGES"
 
 # Get repo status
@@ -47,7 +46,7 @@ fi
 # If changes found (or `force` param is passed), update dotfiles
 if [ "$UPDATE" = true ]; then
 
-  # say "updating now"
+  say "updating dotfiles now"
    
   echo "\nUPDATING DOTFILES"
   echo "... Loading SSH key"
