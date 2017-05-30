@@ -17,7 +17,7 @@ do
   # Unmount successful
 	if [ "$CHECK_DAILY" = "0" ]; then
     
-    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Daily drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Daily drive unmounted" >> /Users/patrick/Library/Logs/Backup/backup.log`
     
     echo "unmounted daily!"
 
@@ -46,7 +46,7 @@ do
   # Unmount successful
 	if [ "$CHECK_WEEKLY" = "0" ]; then
     
-    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Weekly drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Weekly drive unmounted" >> /Users/patrick/Library/Logs/Backup/backup.log`
     
     echo "unmounted weekly!"
     break
@@ -74,7 +74,7 @@ do
   # Unmount successful
 	if [ "$CHECK_MONTHLY" = "0" ]; then
         
-    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Monthly drive unmounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+    `echo "$(/bin/date +"%Y-%m-%d %T %p") => Monthly drive unmounted" >> /Users/patrick/Library/Logs/Backup/backup.log`
 
     echo "unmounted monthly!"
 
@@ -90,4 +90,4 @@ do
 done
 
 # Add line break to backup console output when we finish
-`echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+`echo '' >> /Users/patrick/Library/Logs/Backup/backup.log`
