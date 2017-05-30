@@ -140,7 +140,7 @@ if [ "$UPDATE" = true ]; then
 # If no changes found, leave dotfiles as-is
 else
   
-  say "No changes found"
+  say "No changes found, sir!"
   
   echo "\nNo changes found!\n";
   
