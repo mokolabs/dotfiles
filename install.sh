@@ -30,7 +30,7 @@ link() {
 }
 
 # Check for changes
-say "checking for changes"
+# say "checking for changes"
 echo "\nCHECKING FOR CHANGES"
 
 # Get repo status
@@ -46,7 +46,7 @@ fi
 # If changes found (or `force` param is passed), update dotfiles
 if [ "$UPDATE" = true ]; then
 
-  say "updating dotfiles now, sir"
+  # say "updating dotfiles now, sir"
    
   echo "\nUPDATING DOTFILES"
   echo "... Loading SSH key"
@@ -140,7 +140,7 @@ if [ "$UPDATE" = true ]; then
 # If no changes found, leave dotfiles as-is
 else
   
-  say "No changes found, sir!"
+  # say "No changes found, sir!"
   
   echo "\nNo changes found!\n";
   
