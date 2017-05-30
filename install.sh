@@ -1,6 +1,6 @@
 #!/bin/bash
 
-say goodbye;
+say "hello";
 
 # Load .bash_profile
 source $HOME/.bash_profile
@@ -37,6 +37,8 @@ OUTPUT="$(ssh-agent bash -c 'ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2
 
 # If changes found (or `force` param is passed), update dotfiles
 if [ -n "$OUTPUT" ] || [ "$1" == "force" ]; then
+
+  say "updating";
 
   echo "\nUPDATING DOTFILES"
   echo "... Loading SSH key"
