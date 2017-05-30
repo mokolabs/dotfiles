@@ -46,7 +46,7 @@ fi
 # If changes found (or `force` param is passed), update dotfiles
 if [ "$UPDATE" = true ]; then
 
-  say "updating dotfiles now"
+  say "updating dotfiles now, sir"
    
   echo "\nUPDATING DOTFILES"
   echo "... Loading SSH key"
