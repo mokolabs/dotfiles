@@ -1,6 +1,6 @@
 #!/bin/bash
 
-say "hello";
+# say "hello";
 
 # Load .bash_profile
 source $HOME/.bash_profile
@@ -47,7 +47,7 @@ fi
 # If changes found (or `force` param is passed), update dotfiles
 if [ "$UPDATE" = true ]; then
 
-  say "updating now"
+  # say "updating now"
    
   echo "\nUPDATING DOTFILES"
   echo "... Loading SSH key"
@@ -141,8 +141,8 @@ if [ "$UPDATE" = true ]; then
 # If no changes found, leave dotfiles as-is
 else
   
+  say "No changes found"
+  
   echo "\nNo changes found!\n";
   
 fi
-
-say "see ya";
