@@ -94,6 +94,7 @@ if [ "$UPDATE" = true ]; then
   mkdir -p $HOME/Library/Backup/Scripts/
   mkdir -p $HOME/Library/Logs/Backup/
   link $dotfiles/backup/carboncopycloner $HOME/Library/Backup/Scripts/carboncopycloner
+  link $dotfiles/backup/sites $HOME/Library/Backup/Scripts/sites
   link $HOME/Library/Logs/Backup $HOME/Library/Backup/Logs
 
   # Dropbox
