@@ -33,18 +33,27 @@ link() {
 
 # Check for changes
 echo "\nCHECKING FOR CHANGES"
-OUTPUT="$(ssh-agent bash -c 'ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2>&1; cd /Users/patrick/.dotfiles; git fetch origin; git status -u no | grep "behind";')";
+
+# Get repo status
+STATUS="$(ssh-agent bash -c 'ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2>&1; cd /Users/patrick/.dotfiles; git fetch; git status -u no;')";
+
+# Update if changes found
+if echo "$STATUS" | grep -q "behind"; then
+  UPDATE="true"
+elif [ "$1" == "force" ]; then
+  UPDATE="true"
+fi
 
 # If changes found (or `force` param is passed), update dotfiles
-if [ -n "$OUTPUT" ] || [ "$1" == "force" ]; then
+if [ "$UPDATE" = true ]; then
 
-  say "updating";
-
+  say "updating"
+   
   echo "\nUPDATING DOTFILES"
   echo "... Loading SSH key"
   echo "... Switching to ~/.dotfiles directory"
   echo "... Pulling changes from master repo"
-  ssh-agent bash -c "ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2>&1; cd /Users/patrick/.dotfiles; git pull -q origin master;";
+  ssh-agent bash -c "ssh-add -A /Users/patrick/.ssh/id_rsa > /dev/null 2>&1; cd /Users/patrick/.dotfiles; git pull -q origin master;"
   
   # Bash
   echo "\nBASH PROFILE AND COMPLETION"
@@ -127,7 +136,7 @@ if [ -n "$OUTPUT" ] || [ "$1" == "force" ]; then
   timestamp=$(date "$format");  # get current time
   timestamp=${timestamp/AM/am}; # lowercase AM
   timestamp=${timestamp/PM/pm}; # lowercase PM
-  terminal-notifier -sound default -title 'Dotfiles Updated' -message "Your dotfiles were updated at $timestamp."
+  /usr/local/bin/terminal-notifier -sound default -title 'Dotfiles Updated' -message "Your dotfiles were updated at $timestamp."
   
 # If no changes found, leave dotfiles as-is
 else
