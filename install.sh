@@ -128,7 +128,7 @@ if [ "$UPDATE" = true ]; then
   fi
   
   # Reload shell
-  osascript reload_terminal.applescript > /dev/null 2>&1
+  /usr/bin/osascript $dotfiles/reload_terminal.applescript > /dev/null 2>&1
 
   # Notify user we've updated dotfiles
   format="+%l:%M %p";           # customize time format
