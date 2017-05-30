@@ -23,7 +23,7 @@ link() {
   # link file (unless link already exists)
   if [ ! -e $2 ] ; then
     echo "... add link from $2 -> $1";
-    ln -s $1 $2;
+    ln -sfF $1 $2;
   else
     echo "... found link from $2 -> $1";
   fi
