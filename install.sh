@@ -145,4 +145,4 @@ else
   
 fi
 
-say "goodbye";
+say "see ya";
