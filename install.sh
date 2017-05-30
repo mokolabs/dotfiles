@@ -135,7 +135,7 @@ if [ "$UPDATE" = true ]; then
   timestamp=$(date "$format");  # get current time
   timestamp=${timestamp/AM/am}; # lowercase AM
   timestamp=${timestamp/PM/pm}; # lowercase PM
-  terminal-notifier -sound default -title 'Dotfiles Updated' -message "Your dotfiles were updated at $timestamp."
+  /usr/local/bin/terminal-notifier -sound default -title 'Dotfiles Updated' -message "Your dotfiles were updated at $timestamp."
   
 # If no changes found, leave dotfiles as-is
 else
