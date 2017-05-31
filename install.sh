@@ -29,7 +29,7 @@ remove() {
 }
 
 link() {
-  # link file (unless link already exists)
+  # link file
   if [ ! -e $2 ] ; then
     echo "... add link from:"
   else
