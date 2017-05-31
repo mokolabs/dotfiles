@@ -35,11 +35,11 @@ SHELL=/bin/bash
 # Update dotfiles every hour
 0       *       *       *       *       source /Users/patrick/.bash_profile; /bin/sh /Users/patrick/.dotfiles/install.s$
 
-# Remove Dropbox checkmarks every minutes
+# Remove Dropbox checkmarks every minute
 *       *       *       *       *       /bin/sh /Users/patrick/.dropbox.remover.sh
 
-# Update dotfiles every five minutes
-*/5       *       *       *       *       /bin/sh /Users/patrick/.dotfiles/install.sh bypass
+# Update dotfiles every minute
+*       *       *       *       *       /bin/sh /Users/patrick/.dotfiles/install.sh bypass
 
 
 # BACKUP (at 7pm daily)
