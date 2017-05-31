@@ -32,13 +32,11 @@ link() {
   # link file (unless link already exists)
   if [ ! -e $2 ] ; then
     echo "... add link from:"
-    source_file $1
-    target_file $2
   else
     echo "... update link from:"
-    source_file $1
-    target_file $2
   fi
+  source_file $1
+  target_file $2
   ln -sfn $1 $2
 }
 
