@@ -162,7 +162,6 @@ if [ "$UPDATE" = true ]; then
 else
   
   # say "No changes found, sir!"
-  
   echo "\nNo changes found!\n";
   
 fi
