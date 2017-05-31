@@ -66,6 +66,3 @@ on run command
 	end tell
 	
 end run
-
-
-
