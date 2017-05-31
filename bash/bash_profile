@@ -98,6 +98,59 @@ function a() {
   /usr/local/bin/atom $PWD
 }
 
+# Reset WiFi connection
+function bounce() {
+  if [ "$1" == "bluetooth" ] || [ "$1" == "blue" ]; then
+    /usr/local/bin/blueutil off; /usr/local/bin/blueutil on
+  else
+    /usr/sbin/networksetup -setairportpower en0 off &> /dev/null;
+    /usr/sbin/networksetup -setairportpower en0 on &> /dev/null;
+  fi
+}
+
+# Switch to correct Heroku account when navigating into or within ~/Sites
+# by overriding the cd command to first change directories and then switch heroku account
+function cd () {
+  # Always run default cd command
+  builtin cd "$@";
+
+  # Switch Heroku accounts (if needed)
+  
+  # Switch Heroku accounts when navigating directories within ~Sites
+  if [[ "$PWD" =~ Sites ]]; then
+    switch;
+  # Switch Heroku accounts when changing to a directory within ~Sites
+  elif [[ "$1" =~ Sites ]]; then
+    switch;
+  fi
+
+  # Run optional actions if second argument is present
+  
+  # Start server (and clear previous terminal output)
+  if [[ "$2" == "s" ]]; then
+    clear;
+    start;
+  # Open directory in Atom
+  elif [[ "$2" == "a" ]]; then
+    a;
+  # Clear previous terminal output
+  elif [[ "$2" == "c" ]]; then
+    clear;
+  # Sync dotfiles
+  elif [[ "$2" == "sync" ]]; then
+    /usr/bin/env sh ~/.dotfiles/install.sh bypass;
+  fi
+}
+
+# Use diff alias for git diff if directory is a git repo
+function diff () {
+  if [ -d "$PWD/.git" ]; then
+    git diff "$@"
+  else
+    /usr/bin/diff
+  fi
+}
+
 # Remove (or restore) dropbox up-to-date checkmark icons
 function dropbox() {
   if [[ "$1" == "restore" ]]; then
@@ -107,6 +160,38 @@ function dropbox() {
   else
     sh ~/.dropbox.remover.sh
   fi
+}
+
+# Get current git branch
+function get_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+}
+
+# Use diff alias for git log if directory is a git repo
+function log () {
+  if [ -d "$PWD/.git" ]; then
+    git log "$@"
+  else
+    /usr/bin/log
+  fi
+}
+
+# Use reset alias for git reset if directory is a git repo
+function reset () {
+  if [ -d "$PWD/.git" ]; then
+    git reset "$@"
+  else
+    /usr/bin/reset
+  fi
+}
+
+# Verify Heroku account is correct before running heroku command
+function set_account_before_running_heroku_command () {
+  # Switch Heroku account
+  switch;
+  
+  # Then run heroku command as intended
+  /usr/local/heroku/bin/heroku "$@";
 }
 
 # Launch Ruby apps
@@ -156,100 +241,5 @@ function switch () {
   # Use mokolabs (while in all other Sites directories)
   elif [[ "$PWD" =~ Sites ]]; then
     /usr/local/heroku/bin/heroku accounts:set mokolabs
-  fi
-}
-
-# Switch to correct Heroku account when navigating into or within ~/Sites
-# by overriding the cd command to first change directories and then switch heroku account
-function cd () {
-  # Always run default cd command
-  builtin cd "$@";
-
-  # Switch Heroku accounts (if needed)
-  
-  # Switch Heroku accounts when navigating directories within ~Sites
-  if [[ "$PWD" =~ Sites ]]; then
-    switch;
-  # Switch Heroku accounts when changing to a directory within ~Sites
-  elif [[ "$1" =~ Sites ]]; then
-    switch;
-  fi
-
-  # Run optional actions if second argument is present
-  
-  # Start server (and clear previous terminal output)
-  if [[ "$2" == "s" ]]; then
-    clear;
-    start;
-  # Open directory in Atom
-  elif [[ "$2" == "a" ]]; then
-    a;
-  # Clear previous terminal output
-  elif [[ "$2" == "c" ]]; then
-    clear;
-  # Sync dotfiles
-  elif [[ "$2" == "sync" ]]; then
-    /usr/bin/env sh ~/.dotfiles/install.sh bypass;
-  fi
-}
-
-# Use diff alias for git diff if directory is a git repo
-function diff () {
-  if [ -d "$PWD/.git" ]; then
-    git diff "$@"
-  else
-    /usr/bin/diff
-  fi
-}
-
-# Use diff alias for git log if directory is a git repo
-function log () {
-  if [ -d "$PWD/.git" ]; then
-    git log "$@"
-  else
-    /usr/bin/log
-  fi
-}
-
-# Use reset alias for git reset if directory is a git repo
-function reset () {
-  if [ -d "$PWD/.git" ]; then
-    git reset "$@"
-  else
-    /usr/bin/reset
-  fi
-}
-
-# Verify Heroku account is correct before running heroku command
-function set_account_before_running_heroku_command () {
-  # Switch Heroku account
-  switch;
-  
-  # Then run heroku command as intended
-  /usr/local/heroku/bin/heroku "$@";
-}
-
-# Bounce WiFi
-function bounce() {
-  if [ "$1" == "bluetooth" ] || [ "$1" == "blue" ]; then
-    /usr/local/bin/blueutil off; /usr/local/bin/blueutil on
-  else
-    /usr/sbin/networksetup -setairportpower en0 off &> /dev/null;
-    /usr/sbin/networksetup -setairportpower en0 on &> /dev/null;
-  fi
-}
-
-# Get current git branch
-function get_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
-}
-
-
-# Tweak new message notification style for Messages app
-function messages {
-  if [[ "$1" == "off" ]]; then
-    /Users/patrick/.dotfiles/NCutil.py -a none com.apple.iChat
-  elif [[ "$1" == "on" ]]; then
-    /Users/patrick/.dotfiles/NCutil.py -a banners com.apple.iChat
   fi
 }
