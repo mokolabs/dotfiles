@@ -9,21 +9,21 @@ mount_all () {
 
 mount_daily () {
 	/usr/sbin/diskutil mount Daily &> /dev/null
-	`echo "$(/bin/date +"%Y-%m-%d %T %p") => Daily drive mounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+	`echo "$(/bin/date +"%Y-%m-%d %T %p") => Daily drive mounted" >> /Users/patrick/Library/Logs/Backup/backup.log`
 }
 
 mount_weekly () {
 	/usr/sbin/diskutil mount Weekly &> /dev/null
-	`echo "$(/bin/date +"%Y-%m-%d %T %p") => Weekly drive mounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+	`echo "$(/bin/date +"%Y-%m-%d %T %p") => Weekly drive mounted" >> /Users/patrick/Library/Logs/Backup/backup.log`
 }
 
 mount_monthly () {
 	/usr/sbin/diskutil mount Monthly &> /dev/null
-	`echo "$(/bin/date +"%Y-%m-%d %T %p") => Monthly drive mounted" >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+	`echo "$(/bin/date +"%Y-%m-%d %T %p") => Monthly drive mounted" >> /Users/patrick/Library/Logs/Backup/backup.log`
 }
 
 # Add line break to backup console output before we start
-`echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
+`echo '' >> /Users/patrick/Library/Logs/Backup/backup.log`
 
 # Mount single drives (with `mount {drive}`)
 if [ "$1" = "daily" ]; then
@@ -38,6 +38,3 @@ elif [ "$1" = "all" ]; then
 else
 	mount_all
 fi
-
-# Add line break to backup console output when we finish
-`echo '' >> ~/Library/Backup/Scripts/carboncopycloner/backup.log`
