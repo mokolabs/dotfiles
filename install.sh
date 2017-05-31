@@ -148,7 +148,7 @@ if [ "$UPDATE" = true ]; then
   
   fi
   
-  # Reload shell
+  # Reload shell in open, non-busy Terminal windows
   /usr/bin/osascript $dotfiles/applescript/reload_terminal.applescript > /dev/null 2>&1
 
   # Notify user we've updated dotfiles
