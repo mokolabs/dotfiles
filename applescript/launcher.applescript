@@ -1,23 +1,16 @@
 -- Use this script to quickly switch all Terminal tabs to a specific web app or directory
 
--- Move to ~/.launcher.applescript
+-- Move this script to ~/.launcher.applescript:
+-- mv launcher.applescript ~/.launcher.applescript
 
--- Add this alias to your ~/.bash_profile
+-- Add this alias to your ~/.bash_profile:
 -- alias launch="osascript ~/.launcher.applescript"
 
--- Add aliases to your ~/.bash_profile for each web app
--- alias beekman="cd ~/Sites/beekman"
+-- Add aliases to your ~/.bash_profile for each app you need to launch
 -- alias cinema="cd ~/Sites/beekman"
--- alias crowley="cd ~/Sites/crowleyportraits"
--- alias crowleyportraits ="cd ~/Sites/crowleyportraits"
--- alias graffle="cd ~/Sites/graffletopia"
--- alias graffletopia="cd ~/Sites/graffletopia"
--- alias icalshare="cd ~/Sites/icalshare"
--- alias jarvis="cd ~/Sites/jarvis"
--- alias mokolabs="cd ~/Sites/mokolabs"
--- alias raise="cd ~/Sites/raise"
--- alias sdruby="cd ~/Sites/sdruby"
--- alias sites="cd ~/Sites/"
+
+-- Then run the launch command like so:
+-- launch cinema
 
 on run command
 	
