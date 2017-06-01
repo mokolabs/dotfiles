@@ -78,7 +78,7 @@ alias mount="sh ~/.drive_mount.sh"
 alias unmount="sh ~/.drive_unmount.sh"
 
 # Aliases (web apps)
-alias launch="osascript ~/.terminal.launcher.applescript"
+alias launch="osascript ~/.applescript/.terminal.launcher.applescript"
 alias sites="cd ~/Sites/"
 alias cinema="cd ~/Sites/beekman"
 alias crowley="cd ~/Sites/crowleyportraits"

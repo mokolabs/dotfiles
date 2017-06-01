@@ -78,8 +78,9 @@ if [ "$UPDATE" = true ]; then
   # Applescript
   echo "\nAPPLESCRIPT"
   mkdir -p $HOME/.applescript/
-  link $dotfiles/applescript/terminal.launcher.applescript $HOME/.applescript/terminal.launcher.applescript
   link $dotfiles/applescript/finder.resize.applescript $HOME/.applescript/finder.resize.applescript
+  link $dotfiles/applescript/terminal.launcher.applescript $HOME/.applescript/terminal.launcher.applescript
+  link $dotfiles/applescript/terminal.reload.applescript $HOME/.applescript/terminal.reload.applescript
   echo "... copied file from:"
   source_file "/Users/patrick/.dotfiles/applescript/Resize Finder Windows"
   target_file "/Users/patrick/Library/Services/Resize Finder Windows"
@@ -151,7 +152,7 @@ if [ "$UPDATE" = true ]; then
   fi
   
   # Reload shell in open, non-busy Terminal windows
-  /usr/bin/osascript $dotfiles/applescript/terminal.reload.applescript > /dev/null 2>&1
+  /usr/bin/osascript $HOME/.applescript/terminal.reload.applescript > /dev/null 2>&1
 
   # Notify user we've updated dotfiles
   format="+%l:%M %p";           # customize time format
