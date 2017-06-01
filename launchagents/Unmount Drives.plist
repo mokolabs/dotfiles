@@ -8,7 +8,9 @@
 		<string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin</string>
 	</dict>
 	<key>Label</key>
-	<string>Unmount backup drives</string>
+	<string>Unmount Drives</string>
+	<key>LaunchOnlyOnce</key>
+	<true/>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/bin/sh</string>

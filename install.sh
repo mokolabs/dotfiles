@@ -16,28 +16,28 @@ green=$(tput setaf 2)
 copy() {
   # copy file (when we can't use symlinks)
   echo "... copied file from:"
-  source_file $1
-  target_file $2
-  cp -fR $1 $2
+  source_file "$1"
+  target_file "$2"
+  cp -fR "$1" "$2"
 }
 
 remove() {
   # remove file
   echo "... removed file:"
-  source_file $1
-  rm -rfd $1 > /dev/null 2>&1
+  source_file "$1"
+  rm -rfd "$1" > /dev/null 2>&1
 }
 
 link() {
   # link file
-  if [ ! -e $2 ] ; then
+  if [ ! -e "$2" ] ; then
     echo "... add link from:"
   else
     echo "... update link from:"
   fi
-  source_file $1
-  target_file $2
-  ln -sfn $1 $2
+  source_file "$1"
+  target_file "$2"
+  ln -sfn "$1" "$2"
 }
 
 source_file() {
@@ -81,10 +81,7 @@ if [ "$UPDATE" = true ]; then
   link $dotfiles/applescript/finder.resize.applescript $HOME/.applescript/finder.resize.applescript
   link $dotfiles/applescript/terminal.launcher.applescript $HOME/.applescript/terminal.launcher.applescript
   link $dotfiles/applescript/terminal.reload.applescript $HOME/.applescript/terminal.reload.applescript
-  echo "... copied file from:"
-  source_file "/Users/patrick/.dotfiles/applescript/Resize Finder Windows"
-  target_file "/Users/patrick/Library/Services/Resize Finder Windows"
-  cp -fR $dotfiles/applescript/Resize\ Finder\ Windows.workflow/ $HOME/Library/Services/Resize\ Finder\ Windows.workflow/
+  copy "$dotfiles/applescript/Resize Finder Windows.workflow/" "$HOME/Library/Services/Resize Finder Windows.workflow/"
 
   # Atom  
   echo "\nATOM"
@@ -120,6 +117,11 @@ if [ "$UPDATE" = true ]; then
   link $dotfiles/git/gitignore $HOME/.gitignore
   link $dotfiles/git/git-completion.bash $HOME/.git-completion.bash
   
+  # LaunchAgents
+  echo "\nLAUNCH AGENTS"
+  link "$dotfiles/launchagents/Load SSH key.plist" "$HOME/Library/LaunchAgents/Load SSH key.plist"
+  link "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Resize Finder.plist"
+
   # Ruby
   echo "\nRUBY"
   link $dotfiles/ruby/gemrc $HOME/.gemrc
