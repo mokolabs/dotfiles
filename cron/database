@@ -1,0 +1,5 @@
+# DATABASE
+
+# Backup Cinema Treasures and Graffletopia databases
+1	19	*	*	*	/bin/sh /Users/patrick/.dotfiles/backup/sites/cinematreasures.sh
+1	19	*	*	*	/bin/sh /Users/patrick/.dotfiles/backup/sites/graffletopia.sh

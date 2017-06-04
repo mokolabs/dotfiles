@@ -1,0 +1,5 @@
+# PHOTOS
+
+# Update Photos every day
+0	20	*	*	*	/usr/bin/open -a Photos
+15	20	*	*	*	/usr/bin/osascript -e 'quit app "Photos"'

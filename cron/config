@@ -1,0 +1,10 @@
+# CONFIG
+
+# Disable mail (so our local mailbox stays clean)
+MAILTO=""
+
+# Load bash shell (so scripts can use .bash_profile settings)
+SHELL=/bin/bash
+
+# Set terminal (so install.sh can use tput commands)
+TERM="xterm-256color"

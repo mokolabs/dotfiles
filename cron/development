@@ -1,0 +1,7 @@
+# DEVELOPMENT
+
+# Update dotfiles every minute
+*	*	*	*	*	/bin/sh /Users/patrick/.dotfiles/install.sh bypass
+
+# Update homebrew every hour
+0	*	*	*	*	/usr/local/bin/brew update

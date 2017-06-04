@@ -31,9 +31,9 @@ remove() {
 link() {
   # link file
   if [ ! -e "$2" ] ; then
-    echo "... add link from:"
+    echo "... added link from:"
   else
-    echo "... update link from:"
+    echo "... updated link from:"
   fi
   source_file "$1"
   target_file "$2"
@@ -48,6 +48,37 @@ source_file() {
 target_file() {
   # print the path to our target file
   printf "${white}$1\n${green}"
+}
+
+add_task() {  
+  # add to crontab
+  (crontab -l ; echo "\n" ; cat "cron/$1") | crontab -
+  #  load cron; add breaks; add new task ; save crontab
+
+  # log action
+  ACTIONS+="...   added -> cron/$1\n"
+
+  # clear terminal
+  clear_terminal
+}
+
+skip_task() {  
+  # don't add to crontab
+
+  # log action
+  ACTIONS+="... skipped -> cron/$1\n"
+
+  # clear terminal
+  clear_terminal
+}
+
+clear_terminal() {
+  # clear terminal output
+  tput rc   # Restore cursor to saved position
+  tput el   # Clear to end of line
+  tput cud1 # Move cursor down one line
+  tput dl1  # Delete one cursor line
+  tput dl1  # Delete one cursor line
 }
 
 # Check for changes
@@ -127,21 +158,95 @@ if [ "$UPDATE" = true ]; then
   link $dotfiles/ruby/gemrc $HOME/.gemrc
 
   # Crontab (optional)
-  if [ $# -eq 0 ]; then
+  if [ "$1" == "force" ]; then
     
-    tput sc                             # Save cursor position
-    echo "\nShow sample crontab? (y/n)" # Ask question
-    read -s input                       # Get input for question
-    tput rc                             # Restore cursor to saved position
-    tput el                             # Clear to end of line
-    tput cud1                           # Move cursor down one line
-    tput dl1                            # Delete one cursor line
-    tput dl1                            # Delete one cursor line
-  
+    echo "\nCRONTAB"
+    tput sc
+    echo "\nInstall crontab? (y/n)"
+    read -s input
+    clear_terminal
+
+    # Log actions       
+    ACTIONS=""
+
     # Show sample crontab if requested
     if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
-      echo "SAMPLE CRONTAB\n"
-      cat $dotfiles/cron/crontab
+
+      # Remove current crontab
+      crontab -r
+
+      # Config
+      crontab cron/config
+
+      # Development
+      add_task "development"
+      
+      # Dropbox
+      add_task "dropbox"
+      
+      # Photos
+      add_task "photos"
+      
+      # Sound
+      add_task "sound"
+      
+      # Wifi
+      add_task "wifi"
+
+      # Homebridge
+      tput cuu1
+      echo "\nInstall tasks for Homebridge? (y/n)"
+      read -s input                   
+      if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
+        add_task "homebridge"
+      else
+        skip_task "homebridge"
+      fi
+      
+      # iTunes
+      tput cuu1
+      echo "\nInstall tasks for iTunes? (y/n)"
+      read -s input                   
+      if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
+        add_task "itunes"
+      else
+        skip_task "itunes"
+      fi
+        
+      # Database
+      tput cuu1
+      echo "\nInstall tasks for database? (y/n)"
+      read -s input                   
+      if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
+        add_task "database"
+      else
+        skip_task "database"
+      fi
+      
+      # Graffletopia
+      tput cuu1
+      echo "\nInstall tasks for graffletopia? (y/n)"
+      read -s input                   
+      if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
+        add_task "graffletopia"
+      else
+        skip_task "graffletopia"
+      fi
+      
+      tput cuu1
+      tput dl1
+      # Finish and add closing line break
+      (crontab -l ; echo "") | crontab -
+
+      echo "$ACTIONS"
+      
+    else
+      
+      tput cuu1
+      tput cuu1
+      tput dl1
+      echo "... skipped crontab install"
+      
     fi
 
   else
