@@ -1,4 +1,2 @@
-# ITUNES
-
 # Pause iTunes after work
 0	20	*	*	*	/usr/bin/osascript -e 'tell application "iTunes" to pause'

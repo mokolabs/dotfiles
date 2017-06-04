@@ -8,3 +8,6 @@ SHELL=/bin/bash
 
 # Set terminal (so install.sh can use tput commands)
 TERM="xterm-256color"
+
+
+# TASKS

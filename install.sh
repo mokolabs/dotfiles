@@ -52,7 +52,7 @@ target_file() {
 
 add_task() {  
   # add to crontab
-  (crontab -l ; echo "\n" ; cat "cron/$1") | crontab -
+  (crontab -l ; echo "" ; cat "cron/$1") | crontab -
   #  load cron; add breaks; add new task ; save crontab
 
   # log action

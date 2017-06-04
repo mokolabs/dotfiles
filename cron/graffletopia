@@ -1,5 +1,3 @@
-# GRAFFLETOPIA
-
 # Backup Graffletopia assets locally
 1	19	*	*	*	/usr/local/bin/aws s3 sync s3://assets.graffletopia.com/production /Users/patrick/Documents/Graffletopia/Backup/AWS --delete --acl public-read
 

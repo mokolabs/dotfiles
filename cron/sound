@@ -1,5 +1,3 @@
-# SOUND
-
 # Unmute volume in morning
 1	7	*	*	*	/usr/bin/osascript -e 'set volume output volume 25'
 
