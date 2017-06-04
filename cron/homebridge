@@ -1,2 +1,3 @@
-# Restart homebridge every day
+# Homebridge:
+# Restart every day
 0	18	*	*	*	/usr/bin/killall 'homebridge'

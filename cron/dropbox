@@ -1,2 +1,3 @@
-# Remove Dropbox checkmarks every minute
+# Dropbox:
+# Remove checkmarks every minute
 *	*	*	*	*	/bin/sh /Users/patrick/.dropbox.remove_checkmarks.sh

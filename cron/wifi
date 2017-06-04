@@ -1,2 +1,3 @@
-# Reset Wifi every morning
+# Wifi:
+# Reset every morning
 0	7	*	*	*	/usr/sbin/networksetup -setairportpower en1 off; /usr/sbin/networksetup -setairportpower en1 on
