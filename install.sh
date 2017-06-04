@@ -161,7 +161,7 @@ if [ "$UPDATE" = true ]; then
   timestamp=$(date "$format" | xargs);  # get current time
   timestamp=${timestamp/AM/am}; # lowercase AM
   timestamp=${timestamp/PM/pm}; # lowercase PM
-  /usr/local/bin/terminal-notifier -sound default -title 'Dotfiles Updated' -message "Your dotfiles were updated at $timestamp."
+  /usr/local/bin/terminal-notifier -sound default -title 'Dotfiles' -message "Your dotfiles were updated at $timestamp." -group "Dotfiles"
   
 # If no changes found, leave dotfiles as-is
 else

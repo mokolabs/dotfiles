@@ -7,4 +7,4 @@
 # If missing...
 # - Do nothing (since overlay-uptodate.icns has already been renamed)
 
-[ -f /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns ] && /bin/mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak && /usr/bin/killall Finder && /usr/local/bin/terminal-notifier -sound default -title 'Dropbox Updated' -message "We have removed the green checkmark icon."
+[ -f /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns ] && /bin/mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak && /usr/bin/killall Finder && /usr/local/bin/terminal-notifier -sound default -title 'Dropbox' -message "We have removed the green checkmark icon."
