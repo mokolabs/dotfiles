@@ -190,6 +190,9 @@ if [ "$UPDATE" = true ]; then
       # Sound
       add_task "sound"
       
+      # iTunes
+      add_task "itunes"
+      
       # Wifi
       add_task "wifi"
 
@@ -203,16 +206,6 @@ if [ "$UPDATE" = true ]; then
         skip_task "homebridge"
       fi
       
-      # iTunes
-      tput cuu1
-      echo "\nInstall tasks for iTunes? (y/n)"
-      read -s input                   
-      if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
-        add_task "itunes"
-      else
-        skip_task "itunes"
-      fi
-        
       # Database
       tput cuu1
       echo "\nInstall tasks for database? (y/n)"
