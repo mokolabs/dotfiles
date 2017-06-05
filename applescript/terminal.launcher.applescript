@@ -1,10 +1,10 @@
 -- Use this script to quickly switch all Terminal tabs to a specific web app or directory
 
 -- Move this script to ~/.launcher.applescript:
--- mv launcher.applescript ~/.launcher.applescript
+-- mv launcher.applescript ~/.applescript/terminal.launcher.applescript
 
 -- Add this alias to your ~/.bash_profile:
--- alias launch="osascript ~/.launcher.applescript"
+-- alias launch="osascript ~/.applescript/terminal.launcher.applescript"
 
 -- Add aliases to your ~/.bash_profile for each app you need to launch
 -- alias cinema="cd ~/Sites/beekman"
