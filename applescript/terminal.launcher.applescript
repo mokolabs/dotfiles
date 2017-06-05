@@ -14,48 +14,56 @@
 
 on run command
 	
-	-- Clear bash history in all windows
-	repeat 3 times
-		tell application "System Events"
-			keystroke "`" using command down
-			keystroke "k" using command down
-		end tell
-	end repeat
-	
-	delay 1
-	
-	-- Switch to app directory
+	-- Clear bash history in all windows	
 	tell application "Terminal"
+		-- Switch to Terminal app
 		activate
-		do script command in window 1
-		do script command in window 2
-	end tell
-	
-	delay 1
-	
-	-- Start app in Window 3
-	tell application "System Events" to tell process "Terminal.app" to keystroke "2" using command down
-	tell application "System Events" to tell process "Terminal.app" to keystroke "k" using command down
-	tell application "System Events" to tell process "Terminal.app" to keystroke "start"
-	tell application "System Events" to tell process "Terminal.app" to key code 36
-	
-	delay 1
-	
-	-- Clear bash history in Window 1
-	tell application "System Events"
-		keystroke "1" using command down
-		keystroke "k" using command down
-	end tell
-	
-	delay 1
-	
-	-- Launch app in TextMate and clear bash history in Windows 1 and 2
-	tell application "Terminal"
-		activate
-		do script "atom README.md" in window 1
+
+		-- Get list of all windows
+		set windows_list to every window
+		set windows_count to count(windows_list)
+		repeat with win in windows_list
+
+			-- Clear terminal
+			do script "clear;" in win
+
+			-- Switch to app directory
+			do script command in win
+
+			-- Clear terminal
+			do script "clear;" in win
+			
+			-- Get window position
+			set win_bounds to bounds of win
+			set win_left_edge to item 1 of win_bounds
+			
+			-- Start app in right-most window
+			if windows_count = 3 then
+				if win_left_edge > 1700 then
+					-- Launch app in Atom
+					do script "atom ." in win
+					
+					-- Clear terminal
+					do script "clear;" in win
+					
+					-- Start app
+					do script "start;" in win
+				end
+			else if windows_count = 2 then
+				if win_left_edge > 850 then
+					-- Launch app in Atom
+					do script "atom ." in win
+					
+					-- Clear terminal
+					do script "clear;" in win
+					
+					-- Start app
+					do script "start;" in win
+				end
+			end
 		
-		tell application "System Events" to tell process "Terminal.app" to keystroke "1" using command down
-		tell application "System Events" to tell process "Terminal.app" to keystroke "k" using command down
+		end repeat
+		
 	end tell
-	
+
 end run
