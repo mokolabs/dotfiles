@@ -157,10 +157,10 @@ if [ "$UPDATE" = true ]; then
   link "$dotfiles/launchagents/Load SSH key.plist" "$HOME/Library/LaunchAgents/Load SSH key.plist"
   link "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Resize Finder.plist"
   if [[ "$HOST" =~ iMac ]]; then
-    link "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Unmount Drives.plist"
+    link "$dotfiles/launchagents/Unmount Drives.plist" "$HOME/Library/LaunchAgents/Unmount Drives.plist"
   fi
   if [[ "$HOST" == iMac ]]; then
-    link "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Homebridge.plist"
+    link "$dotfiles/launchagents/Homebridge.plist" "$HOME/Library/LaunchAgents/Homebridge.plist"
   fi
   
   # Ruby
