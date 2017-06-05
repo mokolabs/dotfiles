@@ -6,6 +6,10 @@ source $HOME/.dotfiles/bash/bash_profile
 # Get path for .dotfiles
 dotfiles="$HOME/.dotfiles"
 
+# Get hostname
+HOST="$(hostname)"
+HOST=${HOST%.local}
+
 # Set variables for formatting text
 normal=$(tput sgr0)
 bold=$(tput bold)
@@ -152,7 +156,13 @@ if [ "$UPDATE" = true ]; then
   echo "\nLAUNCH AGENTS"
   link "$dotfiles/launchagents/Load SSH key.plist" "$HOME/Library/LaunchAgents/Load SSH key.plist"
   link "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Resize Finder.plist"
-
+  if [[ "$HOST" =~ iMac ]]; then
+    link "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Unmount Drives.plist"
+  fi
+  if [[ "$HOST" == iMac ]]; then
+    link "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Homebridge.plist"
+  fi
+  
   # Ruby
   echo "\nRUBY"
   link $dotfiles/ruby/gemrc $HOME/.gemrc
