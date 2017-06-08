@@ -1,5 +1,4 @@
 # Set PATH
-export PATH="/usr/local/heroku/bin:$PATH"                                # Heroku CLI
 export PATH="/usr/local/sbin:$PATH"                                      # Homebrew
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH" # Postgres.app
 
@@ -191,7 +190,7 @@ function set_account_before_running_heroku_command () {
   switch;
   
   # Then run heroku command as intended
-  /usr/local/heroku/bin/heroku "$@";
+  /usr/local/bin/heroku "$@";
 }
 
 # Launch Ruby apps
@@ -219,27 +218,27 @@ function switch () {
   if [ -n "$1" ]; then
     if [ $1 == "cinema" ] || [ $1 == "cinematreasures" ] || [ $1 == "beekman" ]; then
       echo 'switched to cinema'
-      /usr/local/heroku/bin/heroku accounts:set cinema
+      /usr/local/bin/heroku accounts:set cinema
     fi
     if [ $1 == "graffletopia" ] || [ $1 == "graffle" ]; then
       echo 'switched to graffletopia'
-      /usr/local/heroku/bin/heroku accounts:set graffletopia
+      /usr/local/bin/heroku accounts:set graffletopia
     fi
     if [ $1 == "moko" ] || [ $1 == "mokolabs" ]; then
       echo 'switched to mokolabs'
-      /usr/local/heroku/bin/heroku accounts:set mokolabs
+      /usr/local/bin/heroku accounts:set mokolabs
     fi
   fi
 
   # SWITCH ACCOUNT AUTOMATICALLY
   # Cinema Treasures
   if [[ "$PWD" =~ beekman ]]; then
-    /usr/local/heroku/bin/heroku accounts:set cinema
+    /usr/local/bin/heroku accounts:set cinema
   # Graffletopia
   elif [[ "$PWD" =~ graffletopia ]]; then
-    /usr/local/heroku/bin/heroku accounts:set graffletopia
+    /usr/local/bin/heroku accounts:set graffletopia
   # Use mokolabs (while in all other Sites directories)
   elif [[ "$PWD" =~ Sites ]]; then
-    /usr/local/heroku/bin/heroku accounts:set mokolabs
+    /usr/local/bin/heroku accounts:set mokolabs
   fi
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH="/usr/local/heroku/bin:/usr/local:/usr/local/bin:usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH"
+PATH="/usr/local:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH"
 
 # Grab temporary backup link
 /usr/local/heroku/bin/heroku pg:backups public-url --app beekman > /Users/patrick/Sites/beekman/database.url
