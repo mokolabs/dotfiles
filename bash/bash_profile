@@ -62,8 +62,11 @@ alias add="git add"
 alias branch="git branch"
 alias checkout="git checkout"
 alias commit="git commit"
+alias fetch="git fetch"
+alias merge="git merge"
 alias pull="git pull"
 alias push="git push"
+alias remote="git remote"
 alias stash="git stash"
 alias status="git status"
 alias diffc="git diff --cached"
@@ -143,15 +146,16 @@ function cd () {
 
 # Use diff alias for git diff if directory is a git repo
 function diff () {
-  if [ -d "$PWD/.git" ]; then
+  REPO="$(git rev-parse --show-toplevel 2>/dev/null)/.git"
+  if [ -d $REPO ]; then
     git diff "$@"
   else
-    /usr/bin/diff
+    /usr/bin/diff "$@"
   fi
 }
 
 # Remove (or restore) dropbox up-to-date checkmark icons
-function dropbox() {
+function dropbox () {
   if [[ "$1" == "restore" ]]; then
     mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns && killall Finder
   elif [[ "$1" == "remove" ]]; then
@@ -162,25 +166,44 @@ function dropbox() {
 }
 
 # Get current git branch
-function get_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
-}
-
-# Use diff alias for git log if directory is a git repo
-function log () {
-  if [ -d "$PWD/.git" ]; then
-    git log "$@"
-  else
-    /usr/bin/log
+function get_git_branch () {
+  REPO="$(git rev-parse --show-toplevel 2>/dev/null)/.git"
+  if [ -d $REPO ]; then
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
   fi
 }
 
-# Use reset alias for git reset if directory is a git repo
+# Use diff alias for git log when working in a git repo
+function log () {
+  REPO="$(git rev-parse --show-toplevel 2>/dev/null)/.git"
+  if [ -d $REPO ]; then
+    git log "$@"
+  else
+    /usr/bin/log "$@"
+  fi
+}
+
+# User mv alias for git mv when working in a git repo and file is being tracked
+function mv () {
+  REPO="$(git rev-parse --show-toplevel 2>/dev/null)/.git"
+  if [ -d $REPO ]; then
+    if [[ $(git ls-files $@) ]]; then
+      /usr/bin/git mv "$@"
+    else
+      /bin/mv "$@"
+    fi
+  else
+    /bin/mv "$@"
+  fi
+}
+
+# Use reset alias for git reset when working in a git repo
 function reset () {
-  if [ -d "$PWD/.git" ]; then
+  REPO="$(git rev-parse --show-toplevel 2>/dev/null)/.git"
+  if [ -d $REPO ]; then
     git reset "$@"
   else
-    /usr/bin/reset
+    /usr/bin/reset "$@"
   fi
 }
 
