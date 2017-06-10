@@ -154,13 +154,13 @@ if [ "$UPDATE" = true ]; then
   
   # LaunchAgents
   echo "\nLAUNCH AGENTS"
-  link "$dotfiles/launchagents/Load SSH key.plist" "$HOME/Library/LaunchAgents/Load SSH key.plist"
-  link "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Resize Finder.plist"
+  copy "$dotfiles/launchagents/Load SSH key.plist" "$HOME/Library/LaunchAgents/Load SSH key.plist"
+  copy "$dotfiles/launchagents/Resize Finder.plist" "$HOME/Library/LaunchAgents/Resize Finder.plist"
   if [[ "$HOST" =~ iMac ]]; then
-    link "$dotfiles/launchagents/Unmount Drives.plist" "$HOME/Library/LaunchAgents/Unmount Drives.plist"
+    copy "$dotfiles/launchagents/Unmount Drives.plist" "$HOME/Library/LaunchAgents/Unmount Drives.plist"
   fi
   if [[ "$HOST" == iMac ]]; then
-    link "$dotfiles/launchagents/Homebridge.plist" "$HOME/Library/LaunchAgents/Homebridge.plist"
+    copy "$dotfiles/launchagents/Homebridge.plist" "$HOME/Library/LaunchAgents/Homebridge.plist"
   fi
   
   # Ruby
