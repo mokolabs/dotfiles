@@ -252,6 +252,10 @@ if [ "$UPDATE" = true ]; then
       
     fi
 
+    # Reload terminal that was running install.sh
+    # (so we load changes here too)
+    reload
+
   else
     
     # Hide question prompt if any command line argument is present
