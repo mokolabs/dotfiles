@@ -16,7 +16,7 @@ tell application "Finder"
 	end if
 	
 	if macintosh is "MacBook Air" then
-		set bounds of first window to {335, 238, 1105, 706}
+		set bounds of first window to {335, 191, 1105, 665}
 	end if
 	
 	if macintosh is "MacBook Air (Spare)" then
