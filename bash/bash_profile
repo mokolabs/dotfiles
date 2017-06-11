@@ -184,17 +184,31 @@ function log () {
   fi
 }
 
-# User mv alias for git mv when working in a git repo and file is being tracked
+# Use mv alias for git mv when working in a git repo and file is being tracked
 function mv () {
   REPO="$(git rev-parse --show-toplevel 2>/dev/null)/.git"
   if [ -d $REPO ]; then
-    if [[ $(git ls-files $@) ]]; then
-      /usr/bin/git mv "$@"
+    if [[ $(git ls-files "$@") ]]; then
+      git mv "$@"
     else
       /bin/mv "$@"
     fi
   else
     /bin/mv "$@"
+  fi
+}
+
+# Use rm alias for git rm when working in a git repo and file is being tracked
+function rm () {
+  REPO="$(git rev-parse --show-toplevel 2>/dev/null)/.git"
+  if [ -d $REPO ]; then
+    if [[ $(git ls-files "$@") ]]; then
+      git rm -r "$@"
+    else
+      /bin/rm "$@"
+    fi
+  else
+    /bin/rm "$@"
   fi
 }
 
