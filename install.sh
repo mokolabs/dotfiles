@@ -114,6 +114,7 @@ if [ "$UPDATE" = true ]; then
   echo "\nAPPLESCRIPT"
   mkdir -p $HOME/.applescript/
   link $dotfiles/applescript/atom.group.applescript $HOME/.applescript/atom.group.applescript
+  link $dotfiles/applescript/finder.resize.applescript $HOME/.applescript/finder.resize.applescript
   link $dotfiles/applescript/terminal.launcher.applescript $HOME/.applescript/terminal.launcher.applescript
   link $dotfiles/applescript/terminal.reload.applescript $HOME/.applescript/terminal.reload.applescript
 
