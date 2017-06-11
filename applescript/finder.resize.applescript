@@ -24,7 +24,7 @@ tell application "Finder"
 		set display_width to item 3 of display_bounds
 		
 		if display_width = 2560 then
-			set bounds of first window to {902, 462, 1660, 930}
+			set bounds of first window to {901, 458, 1659, 926}
 		else
 			set bounds of first window to {298, 172, 1068, 640}
 		end if
