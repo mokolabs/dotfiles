@@ -116,7 +116,6 @@ if [ "$UPDATE" = true ]; then
   link $dotfiles/applescript/atom.group.applescript $HOME/.applescript/atom.group.applescript
   link $dotfiles/applescript/terminal.launcher.applescript $HOME/.applescript/terminal.launcher.applescript
   link $dotfiles/applescript/terminal.reload.applescript $HOME/.applescript/terminal.reload.applescript
-  copy "$dotfiles/applescript/Resize Finder Windows.workflow/" "$HOME/Library/Services/Resize Finder Windows.workflow/"
 
   # Atom  
   echo "\nATOM"
