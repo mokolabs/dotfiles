@@ -10,15 +10,15 @@ tell application "Finder"
 	set macintosh to computer name of (system info)
 	
 	if macintosh is "iMac Retina" then
-		set bounds of first window to {901.0, 441.0, 1659.0, 879.0}
+		set bounds of first window to {901, 441, 1659, 887}
 	end if
 	
 	if macintosh is "iMac" then
-		set bounds of first window to {901.0, 441.0, 1659.0, 879.0}
+		set bounds of first window to {901, 441, 1659, 887}
 	end if
 	
 	if macintosh is "MacBook Air" then
-		set bounds of first window to {335, 210, 1105, 670}
+		set bounds of first window to {335, 210, 1105, 678}
 	end if
 	
 	if macintosh is "MacBook Air (Spare)" then
@@ -26,9 +26,9 @@ tell application "Finder"
 		set display_width to item 3 of display_bounds
 		
 		if display_width = 2560 then
-			set bounds of first window to {902, 434, 1660, 894}
+			set bounds of first window to {902, 434, 1660, 902}
 		else
-			set bounds of first window to {298, 144, 1068, 604}
+			set bounds of first window to {298, 144, 1068, 612}
 		end if
 	end if
 	
