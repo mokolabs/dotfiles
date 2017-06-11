@@ -48,7 +48,7 @@ alias desktop="cd ~/Desktop"
 alias dots="cd ~/.dotfiles"
 alias dotfiles="cd ~/.dotfiles"
 alias finder="osascript ~/.applescript/finder.resize.applescript &> /dev/null"
-alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/"
+alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/; osascript ~/.applescript/atom.group.applescript"
 alias reload="source ~/.bash_profile"
 alias reset="source ~/.bash_profile"
 
@@ -99,6 +99,7 @@ alias heroku=set_account_before_running_heroku_command;
 # Open current directory in Atom
 function a() {
   /usr/local/bin/atom $PWD
+  osascript ~/.dotfiles/applescript/atom.group.applescript
 }
 
 # Reset WiFi connection
