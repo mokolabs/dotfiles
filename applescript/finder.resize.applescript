@@ -1,24 +1,22 @@
--- Wait three seconds
-delay 3
-
 -- Fix Finder windows
 tell application "Finder"
 	-- Open home directory
 	open POSIX file "/Users/patrick"
 	
-	-- Change window size and sidebar width
+	-- Get macintosh name
 	set macintosh to computer name of (system info)
-	
+
+	-- Change window size and sidebar width	
 	if macintosh is "iMac Retina" then
-		set bounds of first window to {901, 441, 1659, 887}
+		set bounds of first window to {901, 469, 1659, 915}
 	end if
 	
 	if macintosh is "iMac" then
-		set bounds of first window to {901, 441, 1659, 887}
+		set bounds of first window to {901, 469, 1659, 915}
 	end if
 	
 	if macintosh is "MacBook Air" then
-		set bounds of first window to {335, 210, 1105, 678}
+		set bounds of first window to {335, 238, 1105, 706}
 	end if
 	
 	if macintosh is "MacBook Air (Spare)" then
@@ -26,16 +24,16 @@ tell application "Finder"
 		set display_width to item 3 of display_bounds
 		
 		if display_width = 2560 then
-			set bounds of first window to {902, 434, 1660, 902}
+			set bounds of first window to {902, 462, 1660, 930}
 		else
-			set bounds of first window to {298, 144, 1068, 612}
+			set bounds of first window to {298, 172, 1068, 640}
 		end if
 	end if
 	
 	-- Change sidebar width
 	set the sidebar width of first window to 142
 	
-	-- Make a new window to save settings
-	make new Finder window
-	close Finder window 1
+	-- Save changes
+	make new Finder window -- Make a new window to save changes
+	close Finder window 1  -- Close new window
 end tell
