@@ -47,7 +47,6 @@ fi
 alias desktop="cd ~/Desktop"
 alias dots="cd ~/.dotfiles"
 alias dotfiles="cd ~/.dotfiles"
-alias finder="osascript ~/.applescript/finder.resize.applescript &> /dev/null"
 alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/; osascript ~/.applescript/atom.group.applescript"
 alias reload="source ~/.bash_profile"
 alias reset="source ~/.bash_profile"
@@ -164,6 +163,17 @@ function dropbox () {
     sh ~/.dropbox.remover.sh
   else
     sh ~/.dropbox.remover.sh
+  fi
+}
+
+# Fix Finder windows
+function fix () {
+  if [ -n "$1" ]; then          
+    if [ $1 == "all" ]; then
+      osascript ~/.applescript/finder.windows.applescript &> /dev/null
+    fi
+  else
+    osascript ~/.applescript/finder.window.applescript &> /dev/null
   fi
 }
 

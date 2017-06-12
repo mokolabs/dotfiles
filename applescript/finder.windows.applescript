@@ -1,4 +1,4 @@
--- Fix Finder windows
+-- Resize default Finder windows
 tell application "Finder"
 	-- Open home directory
 	open POSIX file "/Users/patrick"

@@ -114,7 +114,8 @@ if [ "$UPDATE" = true ]; then
   echo "\nAPPLESCRIPT"
   mkdir -p $HOME/.applescript/
   link $dotfiles/applescript/atom.group.applescript $HOME/.applescript/atom.group.applescript
-  link $dotfiles/applescript/finder.resize.applescript $HOME/.applescript/finder.resize.applescript
+  link $dotfiles/applescript/finder.window.applescript $HOME/.applescript/finder.window.applescript
+  link $dotfiles/applescript/finder.windows.applescript $HOME/.applescript/finder.windows.applescript
   link $dotfiles/applescript/terminal.launcher.applescript $HOME/.applescript/terminal.launcher.applescript
   link $dotfiles/applescript/terminal.reload.applescript $HOME/.applescript/terminal.reload.applescript
 
@@ -166,7 +167,12 @@ if [ "$UPDATE" = true ]; then
   # Ruby
   echo "\nRUBY"
   link $dotfiles/ruby/gemrc $HOME/.gemrc
-
+  
+  # Remove old files
+  echo "\nCLEANUP"
+  remove $HOME/.applescript/finder.resize.applescript
+  echo ""
+  
   # Crontab (optional)
   if [ "$1" == "force" ]; then
     
@@ -274,6 +280,9 @@ if [ "$UPDATE" = true ]; then
   timestamp=${timestamp/AM/am}; # lowercase AM
   timestamp=${timestamp/PM/pm}; # lowercase PM
   /usr/local/bin/terminal-notifier -sound default -title 'Dotfiles' -message "Your dotfiles were updated at $timestamp." -group "Dotfiles"
+  
+  # Delete old files
+  
   
 # If no changes found, leave dotfiles as-is
 else
