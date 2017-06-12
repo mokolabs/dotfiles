@@ -170,10 +170,10 @@ function dropbox () {
 function fix () {
   if [ -n "$1" ]; then          
     if [ $1 == "all" ]; then
-      osascript ~/.applescript/finder.windows.applescript &> /dev/null
+      osascript ~/.applescript/finder.fix.windows.applescript &> /dev/null
     fi
   else
-    osascript ~/.applescript/finder.window.applescript &> /dev/null
+    osascript ~/.applescript/finder.fix.window.applescript &> /dev/null
   fi
 }
 
