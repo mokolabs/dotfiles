@@ -29,6 +29,7 @@ remove() {
   # remove file
   echo "... removed file:"
   source_file "$1"
+  print "\n"
   rm -rfd "$1" > /dev/null 2>&1
 }
 
@@ -114,8 +115,8 @@ if [ "$UPDATE" = true ]; then
   echo "\nAPPLESCRIPT"
   mkdir -p $HOME/.applescript/
   link $dotfiles/applescript/atom.group.applescript $HOME/.applescript/atom.group.applescript
-  link $dotfiles/applescript/finder.window.applescript $HOME/.applescript/finder.window.applescript
-  link $dotfiles/applescript/finder.windows.applescript $HOME/.applescript/finder.windows.applescript
+  link $dotfiles/applescript/finder.fix.window.applescript $HOME/.applescript/finder.fix.window.applescript
+  link $dotfiles/applescript/finder.fix.windows.applescript $HOME/.applescript/finder.fix.windows.applescript
   link $dotfiles/applescript/terminal.launcher.applescript $HOME/.applescript/terminal.launcher.applescript
   link $dotfiles/applescript/terminal.reload.applescript $HOME/.applescript/terminal.reload.applescript
 
@@ -171,7 +172,8 @@ if [ "$UPDATE" = true ]; then
   # Remove old files
   echo "\nCLEANUP"
   remove $HOME/.applescript/finder.resize.applescript
-  echo ""
+  remove $HOME/.applescript/finder.window.applescript
+  remove $HOME/.applescript/finder.windows.applescript
   
   # Crontab (optional)
   if [ "$1" == "force" ]; then
@@ -280,9 +282,6 @@ if [ "$UPDATE" = true ]; then
   timestamp=${timestamp/AM/am}; # lowercase AM
   timestamp=${timestamp/PM/pm}; # lowercase PM
   /usr/local/bin/terminal-notifier -sound default -title 'Dotfiles' -message "Your dotfiles were updated at $timestamp." -group "Dotfiles"
-  
-  # Delete old files
-  
   
 # If no changes found, leave dotfiles as-is
 else
