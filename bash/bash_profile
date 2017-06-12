@@ -43,6 +43,11 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
+# Customize history
+PROMPT_COMMAND='history -a' # Add commands to history in realtime
+HISTSIZE=1000               # Store up to 1000 commands in current session
+HISTFILESIZE=1000           # Store up to 1000 commands in history file
+
 # Aliases (system)
 alias desktop="cd ~/Desktop"
 alias dots="cd ~/.dotfiles"
