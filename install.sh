@@ -164,6 +164,9 @@ if [ "$UPDATE" = true ]; then
   if [[ "$HOST" == iMac ]]; then
     copy "$dotfiles/launchagents/Homebridge.plist" "$HOME/Library/LaunchAgents/Homebridge.plist"
   fi
+  if [[ "$HOST" == iMac-Retina ]]; then
+    copy "$dotfiles/launchagents/Merge Atom Windows.plist" "$HOME/Library/LaunchAgents/Merge Atom Windows.plist"
+  fi
   
   # Ruby
   echo "\nRUBY"
