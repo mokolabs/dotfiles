@@ -247,6 +247,16 @@ if [ "$UPDATE" = true ]; then
         skip_task "graffletopia"
       fi
       
+      # Screensaver
+      tput cuu1
+      echo "\nInstall tasks for screensaver? (y/n)"
+      read -s input                   
+      if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
+        add_task "screensaver"
+      else
+        skip_task "screensaver"
+      fi
+      
       tput cuu1
       tput dl1
       # Finish and add closing line break
