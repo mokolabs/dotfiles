@@ -57,7 +57,7 @@ target_file() {
 
 add_task() {  
   # add to crontab
-  (crontab -l ; echo "" ; cat "cron/$1") | crontab -
+  (crontab -l ; echo "" ; cat "$dotfiles/cron/$1") | crontab -
   #  load cron; add breaks; add new task ; save crontab
 
   # log action
@@ -194,10 +194,10 @@ if [ "$UPDATE" = true ]; then
     if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
 
       # Remove current crontab
-      crontab -r
+      crontab -r &> /dev/null;
 
       # Config
-      crontab cron/config
+      crontab "$dotfiles/cron/config"
 
       # Development
       add_task "development"
