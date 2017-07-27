@@ -239,6 +239,15 @@ function reset () {
   fi
 }
 
+# Set screen saver from command line
+function saver () {
+  if [[ "$1" == "aerial" ]]; then
+    /usr/bin/defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName Aerial path /Users/patrick/Library/Screen\ Savers/Aerial.saver type 0
+  else
+    /usr/bin/defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName BlankScreen path /Users/patrick/Library/Screen\ Savers/BlankScreen.saver type 0
+  fi
+}
+
 # Verify Heroku account is correct before running heroku command
 function set_account_before_running_heroku_command () {
   # Switch Heroku account
