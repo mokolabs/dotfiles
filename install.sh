@@ -29,7 +29,7 @@ remove() {
   # remove file
   echo "... removed file:"
   source_file "$1"
-  print "\n"
+  printf "\n"
   rm -rfd "$1" > /dev/null 2>&1
 }
 
