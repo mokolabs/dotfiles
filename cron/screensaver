@@ -1,5 +1,5 @@
 # Screensaver:
-# Use aerial screensaver during work hours
+# Use aerial screensaver during work
 0	7	*	*	*	source $HOME/.bash_profile; saver aerial
-# Use blank screensaver at night
-0	19	*	*	*	source $HOME/.bash_profile; saver
+# Use blank screensaver after work
+0	12	*	*	*	source $HOME/.bash_profile; saver
