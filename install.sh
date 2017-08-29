@@ -247,6 +247,16 @@ if [ "$UPDATE" = true ]; then
         skip_task "graffletopia"
       fi
       
+      # Display
+      tput cuu1
+      echo "\nInstall tasks for display? (y/n)"
+      read -s input                   
+      if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
+        add_task "display"
+      else
+        skip_task "display"
+      fi
+      
       # Screensaver
       tput cuu1
       echo "\nInstall tasks for screensaver? (y/n)"

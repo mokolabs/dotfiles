@@ -1,0 +1,7 @@
+# Display:
+# Brighten screen in morning
+0	7	*	*	*	/usr/bin/osascript -e 'delay 5' -e 'tell application "System Events" to key code 49 using {option down}'
+# Darken screen at night
+0	12	*	*	*	/usr/bin/osascript -e 'delay 5' -e 'tell application "System Events" to key code 49 using {option down}'
+# Sleep display (when iMac wakes for backup)
+1	7	*	*	*	/Applications/SleepDisplay.app/Contents/MacOS/sleepdisplay
