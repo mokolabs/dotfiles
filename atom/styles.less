@@ -61,9 +61,12 @@ atom-text-editor .scroll-view {
 
 // Improve gutter appearance
 atom-text-editor {
+  .gutter-container {
+    background-color: #ddd !important;
+  }
   .gutter {
     background-color: #ddd;
-    padding-top: 6px;
+    margin-top: 6px;
     .line-number {
        color: #888;
        opacity: 1;
@@ -76,6 +79,13 @@ atom-text-editor {
          opacity: 1;
        }
      }
+  }
+  .scroll-view {
+    margin-left: -12px;
+    padding-left: 12px;
+  }
+  .lines {
+    padding-left: 12px;
   }
 }
 
