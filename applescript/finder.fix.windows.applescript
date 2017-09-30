@@ -1,5 +1,6 @@
 -- Resize default Finder windows
 tell application "Finder"
+	
 	-- Open home directory
 	open POSIX file "/Users/patrick"
 	
@@ -36,4 +37,5 @@ tell application "Finder"
 	-- Save changes
 	make new Finder window -- Make a new window to save changes
 	close Finder window 1  -- Close new window
+	
 end tell
