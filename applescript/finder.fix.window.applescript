@@ -13,6 +13,10 @@ tell application "Finder"
 		set bounds of first window to {901, 469, 1659, 915}
 	end if
 	
+	if macintosh is "MacBook Pro" then
+		set bounds of first window to {335, 210, 1105, 670}
+	end if
+
 	if macintosh is "MacBook Air" then
 		set bounds of first window to {335, 191, 1105, 665}
 	end if
