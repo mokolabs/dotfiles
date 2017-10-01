@@ -3,7 +3,7 @@
 PATH="/usr/local:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH"
 
 # Grab temporary backup link
-/usr/local/heroku/bin/heroku pg:backups public-url --app beekman > /Users/patrick/Sites/beekman/database.url
+/usr/local/bin/heroku pg:backups public-url --app beekman > /Users/patrick/Sites/beekman/database.url
 
 # Backup database
 TIME=/Users/patrick/Library/Backup/Cinema/$(date +'%Y-%m-%d').sql && curl -o $TIME `cat /Users/patrick/Sites/beekman/database.url`
