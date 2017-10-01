@@ -2,6 +2,9 @@
 
 PATH="/usr/local:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH"
 
+# Switch Heroku account
+/usr/local/bin/heroku accounts:set graffletopia
+
 # Grab temporary backup link
 /usr/local/bin/heroku pg:backups public-url --app graffletopia > /Users/patrick/Sites/graffletopia/database.url
 
