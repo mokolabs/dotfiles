@@ -265,6 +265,15 @@ atom-dock .inset-panel {
   color: #555;
 }
 
+// Hide git status icons for expanded directories
+.status-added > .header.list-item:after,
+.status-ignored > .header.list-item:after,
+.status-modified > .header.list-item:after,
+.status-removed > .header.list-item:after,
+.status-renamed > .header.list-item:after {
+  display: none;
+}
+
 // Collapse README list element
 // (needs CSS parent selector to work)
 // .tree-view .entry .list-item {
