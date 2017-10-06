@@ -103,8 +103,14 @@ done
 # Aliases (heroku)
 alias heroku=set_account_before_running_heroku_command;
 
-# Open current directory in Atom
+# Open current directory in Atom (via a)
 function a() {
+  /usr/local/bin/atom $PWD
+  osascript ~/.dotfiles/applescript/atom.group.applescript
+}
+
+# Open current directory in Atom (via go)
+function go() {
   /usr/local/bin/atom $PWD
   osascript ~/.dotfiles/applescript/atom.group.applescript
 }
