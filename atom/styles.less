@@ -9,17 +9,26 @@
  */
 
 
-// WINDOW
-
-// Background should be black
-atom-workspace,
-atom-text-editor:not(.mini) atom-workspace {
-  background: #000 !important;
-}
+// EDITOR
 
 // Selected text should be dark gray
 atom-text-editor .selection .region {
   background-color: #222 !important;
+}
+
+// Add space between tab bar and editor
+atom-text-editor .scroll-view {
+  padding-top: 5px;
+}
+
+// Add support for selecting lines by clicking between the gutter and left text edge
+atom-text-editor {
+  .selection .region {
+    margin-left: 12px;
+  }
+  .lines {
+    margin-left: 12px;
+  }
 }
 
 
@@ -36,23 +45,13 @@ atom-text-editor .selection .region {
 
 // TABS
 
-// Hide tab icons
-.theme-unity-ui .tab-bar .title:before {
-  display: none;
-}
-
-// Add space between tab bar and editor
-atom-text-editor .scroll-view {
-  padding: 5px 0 0 8px;
-}
-
 // Hide tab bar if no tabs are present
-.theme-unity-ui .tab-bar {
-  height: auto;
+.tab-bar li:only-child {
+  display: none !important;
 }
 
 // Increase tab text size
-.theme-unity-ui .tab-bar .title {
+.tab-bar .title {
   font-size: 12px;
 }
 
@@ -80,28 +79,17 @@ atom-text-editor {
        }
      }
   }
-  .scroll-view {
-    margin-left: -12px;
-    padding-left: 12px;
-  }
-  .lines {
-    padding-left: 12px;
-  }
 }
 
 
 // TREE VIEW
 
-// Hide project header
-atom-dock .inset-panel {
-  display: none;
-}
-
 // Tweak background color
 .tree-view {
-  background: #efefef;
+  background: #ddd;
 }
 
+// Tighten up left margins
 .tree-view .entries {
   margin-left: -12px;
 }
@@ -116,7 +104,7 @@ atom-dock .inset-panel {
   margin-top: -8px;
 }
 .tree-view .project-root:first-child {
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 // Tweak space between project root and entries
@@ -126,8 +114,8 @@ atom-dock .inset-panel {
 
 // Directories should be bold
 .tree-view .header {
-  font-weight: bold;
-  opacity: 0.8;
+  font-weight: bold !important;
+  opacity: 0.6;
 }
 
 // Add more space below project root header
@@ -187,7 +175,13 @@ atom-dock .inset-panel {
   color: #777 !important;
 }
 
-// Add padding to project root
+// Dim icons
+.header.list-item::before,
+.icon::before {
+  opacity: 0.4;
+}
+
+// Tweak project name
 .icon-repo {
   color: #555 !important;
   height: 23px;
@@ -195,10 +189,18 @@ atom-dock .inset-panel {
   text-shadow: none !important;
 }
 
+// Hide project header
+atom-dock .inset-panel {
+  display: none;
+}
+
+
+// README TWEAKS
+
 // Move README files to the top of tree view
 .tree-view .entry .name[data-name="README"],
 .tree-view .entry .name[data-name="README.md"] {
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid #ccc;
   padding-right: 6px;
   padding-top: 8px;
   position: absolute;
@@ -209,16 +211,6 @@ atom-dock .inset-panel {
   z-index: 100;
 }
 
-// Collapse README list element
-// (needs CSS parent selector to work)
-// .tree-view .entry .list-item {
-//   padding: 0 !important;
-//   margin: 0 !important;
-//   height: 0 !important;
-//   min-height: 0 !important;
-//   display: inline !important;
-// }
-
 // Tweak README right padding for READMEs with no file extension
 .tree-view .entry .name[data-name="README"] {
   padding-right: 6px;
@@ -226,13 +218,15 @@ atom-dock .inset-panel {
 
 // Hide README file icon
 .tree-view .entry .icon[data-name="README"]::before,
-.tree-view .entry .icon[data-name="README.md"]::before {
+.tree-view .entry .icon[data-name="README.md"]::before,
+.tree-view .entry .icon[data-name="README.txt"]::before {
   display: none;
 }
 
 // Disable README selected state text color
 .tree-view:focus .entry .name[data-name="README"],
-.tree-view:focus .entry .name[data-name="README.md"] {
+.tree-view:focus .entry .name[data-name="README.md"],
+.tree-view:focus .entry .name[data-name="README.txt"] {
   color: #555;
   text-shadow: none;
 }
@@ -271,6 +265,16 @@ atom-dock .inset-panel {
   color: #555;
 }
 
+// Collapse README list element
+// (needs CSS parent selector to work)
+// .tree-view .entry .list-item {
+//   padding: 0 !important;
+//   margin: 0 !important;
+//   height: 0 !important;
+//   min-height: 0 !important;
+//   display: inline !important;
+// }
+
 
 // STATUS BAR
 
@@ -287,36 +291,13 @@ atom-panel.bottom {
 
 // BACKGROUND APPEARANCE
 
-// Improve appearance when app is in background
-.theme-unity-ui.is-blurred {
+// Dim UI when app is in background
+.is-blurred {
+  .gutter,
+  .scroll-view,
+  .tree-view,
+  .bottom,
   .tab-bar {
-    background-color: #ddd;
-    .tab.active {
-      -webkit-border-image: none;
-      background-color: #ddd;
-      height: 26px;
-      .title {
-        margin-top: 0px;
-      }
-    }
-  }
-  atom-text-editor:not(.mini) {
-    .gutter {
-      background-color: #ddd;
-    }
-  }
-  .tree-view-resizer {
-    background: #ddd;
-  }
-  .tree-view .selected::before {
-    background-image: linear-gradient(#ddd, #ddd);
-    box-shadow: none;
-  }
-  .tree-view:focus .selected::before {
-    background-image: linear-gradient(#ddd, #ddd);
-    box-shadow: none;
-  }
-  atom-panel.bottom {
-    background-color: #ddd;
+    opacity: 0.7;
   }
 }
