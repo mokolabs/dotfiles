@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Load .bash_profile
-source $HOME/.dotfiles/bash/bash_profile
-
 # Switch Heroku account
 /usr/local/bin/heroku accounts:set graffletopia
 
@@ -16,4 +13,4 @@ TIME=/Users/patrick/Library/Backup/Graffletopia/$(date +'%Y-%m-%d').sql && /usr/
 /bin/rm -rfd /Users/patrick/Sites/graffletopia/database.url
 
 # Notify user
-format="+%l:%M %p" && timestamp=$(date "$format") && timestamp=${timestamp/AM/am} && timestamp=${timestamp/PM/pm} && terminal-notifier -sound default -title "Graffletopia" -message "The database was backed up at $timestamp." -group "Graffletopia"
+format="+%l:%M %p" && timestamp=$(date "$format") && timestamp=${timestamp/AM/am} && timestamp=${timestamp/PM/pm} && /usr/local/bin/terminal-notifier -sound default -title "Graffletopia" -message "The database was backed up at $timestamp." -group "Graffletopia"
