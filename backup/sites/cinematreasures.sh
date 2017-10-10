@@ -1,6 +1,7 @@
 #!/bin/bash
 
-PATH="/usr/local:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH"
+# Load .bash_profile
+source $HOME/.dotfiles/bash/bash_profile
 
 # Switch Heroku account
 /usr/local/bin/heroku accounts:set cinema
