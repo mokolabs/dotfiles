@@ -68,21 +68,27 @@ atom-text-editor .gutter .line-number .icon-right {
 // Improve gutter appearance
 atom-text-editor {
   .gutter-container {
+    // Change background to match theme
     background-color: #ddd !important;
   }
   .gutter {
+    // Change background to match theme
     background-color: #ddd;
+    
+    // Push line numbers down
     margin-top: 6px;
+    
     .line-number {
+       // Darken text
        color: #888;
+       
+       // Increase text opacity
        opacity: 1;
-       &.cursor-line-no-selection {
-         color: #888;
-         opacity: 1;
-       }
+
+       // Highlight selected line
        &.cursor-line {
-         color: #888;
-         opacity: 1;
+         background-color: #bbb;
+         opacity: 0.8;
        }
      }
   }
