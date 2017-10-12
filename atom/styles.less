@@ -22,20 +22,8 @@ atom-text-editor .scroll-view {
 }
 
 // Add support for selecting lines by clicking between the gutter and left text edge
-atom-text-editor {
-  .selection .region {
-    margin-left: 12px;
-  }
-  .lines {
-    padding-left: 12px;
-  }
-}
-
-// Disable code folding
-atom-text-editor .gutter .line-number .icon-right {
-  opacity: 0 !important;
-  margin: 0 -1px;
-  width: 0;
+atom-text-editor .scroll-view > div {
+  padding-left: 12px;
 }
 
 
@@ -78,7 +66,9 @@ atom-text-editor {
     // Push line numbers down
     margin-top: 6px;
     
+    // Tweak line number styles
     .line-number {
+      
        // Darken text
        color: #888;
        
@@ -89,6 +79,13 @@ atom-text-editor {
        &.cursor-line {
          background-color: #428BDD;
          opacity: 0.8;
+       }
+       
+       // Disable code folding
+       .icon-right {
+         opacity: 0 !important;
+         margin: 0;
+         pointer-events: none;
        }
      }
   }
@@ -298,12 +295,15 @@ atom-dock .inset-panel {
 // }
 
 
-// STATUS BAR
+// BOTTOM PANEL
 
 // Tweak background color
 atom-panel.bottom {
-  background-color: #ddd;
+  background-color: #eee;
 }
+
+
+// STATUS BAR
 
 // Tweak release notes icon color
 .release-notes-status {
