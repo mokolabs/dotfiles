@@ -9,52 +9,46 @@
  */
 
 
-// EDITOR
-
-// Selected text should be dark gray
-atom-text-editor .selection .region {
-  background-color: #222 !important;
-}
-
-// Add space between tab bar and editor
-atom-text-editor .scroll-view {
-  padding-top: 5px;
-}
-
-// Add support for selecting lines by clicking between the gutter and left text edge
-atom-text-editor .scroll-view > div {
-  padding-left: 12px;
-}
-
-
-// DOCK
-
-// Hide dock toggle (unless we are hovering over it)
-.atom-dock-toggle-button-visible {
-  opacity: 0;
-  &:hover {
-    opacity: 1;
-  }
-}
-
-
 // TABS
+.tab-bar {
+  
+  // Hide tab bar if no tabs are present
+  li:only-child {
+    display: none !important;
+  }
 
-// Hide tab bar if no tabs are present
-.tab-bar li:only-child {
-  display: none !important;
+  // Increase tab text size
+  .title {
+    font-size: 12px;
+  }
+  
 }
 
-// Increase tab text size
-.tab-bar .title {
-  font-size: 12px;
-}
 
-
-// GUTTER
-
-// Improve gutter appearance
+// EDITOR
 atom-text-editor {
+ 
+  // SCROLL VIEW
+  .scroll-view {
+
+    // Add space between tab bar and editor
+    padding-top: 5px;
+
+    // Add support for selecting lines by clicking between the gutter and left text edge
+    & > div {
+      padding-left: 12px;
+    }
+    
+    // Selected text should be dark gray
+    .selection .region {
+      background-color: #222 !important;
+    }
+    
+  }
+
+  // GUTTER
+
+  // Improve gutter appearance
   .gutter-container {
     // Change background to match theme
     background-color: #eee !important;
@@ -89,190 +83,170 @@ atom-text-editor {
        }
      }
   }
+  
 }
 
 
 // TREE VIEW
-
-// Tweak background color
 .tree-view {
+
+  // Tweak background color
   background: #eee;
-}
-
-// Tighten up left margins
-.tree-view .entries {
-  margin-left: -12px;
-}
-
-// Increase text size
-.tree-view {
+  
+  // Increase text size
   font-size: 12px;
-}
-
-// Tweak project root top margin
-.tree-view {
+  
+  // Directories should be bold
+  .header {
+    font-weight: bold !important;
+    opacity: 0.6;
+  }
+  
+  // Tweak left margins
+  .directory .entries {
+    margin-left: -12px;
+    & > li {
+     margin-left: 3px;
+     li {
+       margin-left: 18px;
+     }
+   }
+  }
+  
+  // Lighten list item text color
+  .directory .entries {
+    color: #777;
+  }
+  
+  // Hide file directory icons
+  .icon-file-directory::before {
+    content: none;
+  }
+  
+  // Tweak list item selected state colors
+  li.selected:before {
+    background: #ccc;
+  }
+  
+  // Tweak project root top margin
   margin-top: -8px;
-}
-.tree-view .project-root:first-child {
-  margin-top: 8px;
-}
-
-// Tweak space between project root and entries
-.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
-  padding-bottom: 0px;
-}
-
-// Directories should be bold
-.tree-view .header {
-  font-weight: bold !important;
-  opacity: 0.6;
-}
-
-// Add more space below project root header
-.tree-view .project-root-header {
-  margin-bottom: 3px;
-}
-
-// Don't show Sass icons
-.tab-bar .tab .title[data-path][data-name$=".scss"]:before, 
-.icon-file-text[data-name$=".scss"]:before {
-  content: none;
-}
-
-// Tweak left margins
-.tree-view .directory .entries > li {
-  margin-left: 3px;
-}
-.tree-view .directory .entries > li li {
-  margin-left: 18px;
+  .project-root:first-child {
+    margin-top: 8px;
+  }
+  
+  // Tweak space between project root and entries
+  &.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
+    padding-bottom: 0px;
+  }
+  
+  // Add more space below project root header
+  .project-root-header {
+    margin-bottom: 1px;
+  }
+  
+  // Align project root header with directory list
+  .project-root-header {
+    padding-left: 6px;
+  }
+  
+  // Hide disclosure triangle on project root header
+  .project-root-header.list-item::before {
+    content: none !important;
+  }
+  
 }
 
-// Lighten list item text color
-.tree-view .directory .entries {
-  color: #777;
+
+// TREE VIEW (README TWEAKS)
+.tree-view {
+  
+  // Move README files to the top of tree view
+  .entry .name[data-name="README"],
+  .entry .name[data-name="README.md"] {
+    border-bottom: 1px solid #ccc;
+    padding-right: 6px;
+    padding-top: 8px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    width: 110%;
+    z-index: 100;
+  }
+
+  // Tweak README right padding for READMEs with no file extension
+  .entry .name[data-name="README"] {
+    padding-right: 6px;
+  }
+
+  // Hide README file icon
+  .entry .icon[data-name="README"]::before,
+  .entry .icon[data-name="README.md"]::before,
+  .entry .icon[data-name="README.txt"]::before {
+    display: none;
+  }
+
+  // Disable README selected state text color
+  &:focus .entry .name[data-name="README"],
+  &:focus .entry .name[data-name="README.md"],
+  &:focus .entry .name[data-name="README.txt"] {
+    color: #555;
+    text-shadow: none;
+  }
+
+  // Disable README selected state background color
+  .entries li.list-nested-item:nth-child(1) ~ li.list-item:last-child::before {
+    // assuming repo contains at least one directory
+    background: none !important;
+    background-image: none !important;
+  }
+
+  // Reset selected state for all other nested directories
+  .entries .entries li.list-item.selected:last-child::before,
+  .entries .entries .entries li.list-item.selected:last-child::before,
+  .entries .entries .entries .entries li.list-item.selected:last-child::before,
+  .entries .entries .entries .entries .entries li.list-item.selected:last-child::before,
+  .entries .entries .entries .entries .entries .entries li.list-item.selected:last-child::before {
+    background-image: linear-gradient(#bbb, #bbb) !important;
+  }
+  &:focus .entries .entries li.list-item.selected:last-child::before,
+  &:focus .entries .entries .entries li.list-item.selected:last-child::before,
+  &:focus .entries .entries .entries .entries li.list-item.selected:last-child::before,
+  &:focus .entries .entries .entries .entries .entries li.list-item.selected:last-child::before,
+  &:focus .entries .entries .entries .entries .entries .entries li.list-item.selected:last-child::before {
+    background-image: linear-gradient(#2C84CB, #2C84CB) !important;
+  }
+
+  // Disable pointer events
+  &.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
+    pointer-events: none;
+  }
+
+  // Change project root selected state text color to gray
+  // when project root does not contain a README.md file
+  &:focus .project-root.selected.entry > .header > .name {
+    color: #555;
+  }
+
+  // Collapse README parent list element
+  // (needs CSS parent selector to work)
+  // .entry .list-item {
+  //   padding: 0 !important;
+  //   margin: 0 !important;
+  //   height: 0 !important;
+  //   min-height: 0 !important;
+  //   display: inline !important;
+  // }
+  
 }
 
-// Hide file directory icons
-.icon-file-directory::before {
-  content: none;
-}
 
-// Tweak list item selected state colors
-.tree-view li.selected:before {
-  background: #ccc;
-}
-
-// Hide disclosure triangle for project root
-.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item::before {
-  content: '';
-}
-
-// Tweak project root icon position 
-.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item::before {
-  margin: 0 0 0 -18px;
-}
-
-// Show repo icon
-.tree-view .icon-file-directory:first::before,
-.tree-view .icon-repo:first::before {
-  color: #777 !important;
-  content: "\f0a3";
-}
-
-// Tweak repo icon color when selected
-.tree-view .entry.selected > .header > .name::before,
-.tree-view .entry.selected > .name::before {
-  color: #777 !important;
-}
+// ICONS
 
 // Dim icons
 .header.list-item::before,
 .icon::before {
   opacity: 0.4;
-}
-
-// Tweak project name
-.icon-repo {
-  color: #555 !important;
-  height: 23px;
-  line-height: 23px !important;
-  text-shadow: none !important;
-}
-
-// Hide project header
-atom-dock .inset-panel {
-  display: none;
-}
-
-
-// README TWEAKS
-
-// Move README files to the top of tree view
-.tree-view .entry .name[data-name="README"],
-.tree-view .entry .name[data-name="README.md"] {
-  border-bottom: 1px solid #ccc;
-  padding-right: 6px;
-  padding-top: 8px;
-  position: absolute;
-  right: 0;
-  text-align: right;
-  top: 0;
-  width: 110%;
-  z-index: 100;
-}
-
-// Tweak README right padding for READMEs with no file extension
-.tree-view .entry .name[data-name="README"] {
-  padding-right: 6px;
-}
-
-// Hide README file icon
-.tree-view .entry .icon[data-name="README"]::before,
-.tree-view .entry .icon[data-name="README.md"]::before,
-.tree-view .entry .icon[data-name="README.txt"]::before {
-  display: none;
-}
-
-// Disable README selected state text color
-.tree-view:focus .entry .name[data-name="README"],
-.tree-view:focus .entry .name[data-name="README.md"],
-.tree-view:focus .entry .name[data-name="README.txt"] {
-  color: #555;
-  text-shadow: none;
-}
-
-// Disable README selected state background color
-.tree-view .entries li.list-nested-item:nth-child(1) ~ li.list-item:last-child::before {
-  // assuming repo contains at least one directory
-  background: none !important;
-  background-image: none !important;
-}
-
-// Reset selected state for all other nested directories
-.tree-view .entries .entries li.list-item.selected:last-child::before,
-.tree-view .entries .entries .entries li.list-item.selected:last-child::before,
-.tree-view .entries .entries .entries .entries li.list-item.selected:last-child::before,
-.tree-view .entries .entries .entries .entries .entries li.list-item.selected:last-child::before,
-.tree-view .entries .entries .entries .entries .entries .entries li.list-item.selected:last-child::before {
-  background-image: linear-gradient(#bbb, #bbb) !important;
-}
-.tree-view:focus .entries .entries li.list-item.selected:last-child::before,
-.tree-view:focus .entries .entries .entries li.list-item.selected:last-child::before,
-.tree-view:focus .entries .entries .entries .entries li.list-item.selected:last-child::before,
-.tree-view:focus .entries .entries .entries .entries .entries li.list-item.selected:last-child::before,
-.tree-view:focus .entries .entries .entries .entries .entries .entries li.list-item.selected:last-child::before {
-  background-image: linear-gradient(#2C84CB, #2C84CB) !important;
-}
-
-// Disable pointer events
-.tree-view.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
-  pointer-events: none;
-}
-
-// Change project root selected state text color to gray
-// when project root does not contain a README.md file
-.tree-view:focus .project-root.selected.entry > .header > .name {
-  color: #555;
 }
 
 // Hide git status icons for expanded directories
@@ -284,15 +258,19 @@ atom-dock .inset-panel {
   display: none;
 }
 
-// Collapse README list element
-// (needs CSS parent selector to work)
-// .tree-view .entry .list-item {
-//   padding: 0 !important;
-//   margin: 0 !important;
-//   height: 0 !important;
-//   min-height: 0 !important;
-//   display: inline !important;
-// }
+
+// DOCK
+.atom-dock-toggle-button-visible {
+
+  // Hide dock toggle
+  opacity: 0;
+  
+  // But show on hover
+  &:hover {
+    opacity: 1;
+  }
+  
+}
 
 
 // BOTTOM PANEL
