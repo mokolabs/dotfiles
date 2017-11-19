@@ -58,7 +58,6 @@ alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/; osascript ~/.applescri
 alias reload="source ~/.bash_profile"
 alias reset="source ~/.bash_profile"
 alias update="sh ~/.dotfiles/install.sh force; reload; clear;"
-alias mysql="mysql -u root"
 
 # Aliases (navigation)
 alias ..='cd ..'
