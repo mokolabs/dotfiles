@@ -9,3 +9,4 @@
 	helper = osxkeychain
 [core]
 	excludesfile = /Users/patrick/.gitignore
+	editor = atom --wait
