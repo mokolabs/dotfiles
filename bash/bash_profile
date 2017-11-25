@@ -26,7 +26,7 @@ export EDITOR=nano
 # Simplify rake command
 rake() {
   # If Gemfile is present, you can omit `bundle exec` prefix
-  if [ -e ./Gemfile.lock ]; then 
+  if [ -e ./Gemfile.lock ]; then
     bundle exec rake "$@";
   # Otherwise, use rake normally
   else
@@ -132,7 +132,7 @@ function cd () {
   builtin cd "$@";
 
   # Switch Heroku accounts (if needed)
-  
+
   # Switch Heroku accounts when navigating directories within ~Sites
   if [[ "$PWD" =~ Sites ]]; then
     switch;
@@ -142,7 +142,7 @@ function cd () {
   fi
 
   # Run optional actions if second argument is present
-  
+
   # Start server (and clear previous terminal output)
   if [[ "$2" == "s" ]]; then
     clear;
@@ -182,7 +182,7 @@ function dropbox () {
 
 # Fix Finder windows
 function fix () {
-  if [ -n "$1" ]; then          
+  if [ -n "$1" ]; then
     if [ $1 == "all" ]; then
       osascript ~/.applescript/finder.fix.windows.applescript &> /dev/null
     fi
@@ -260,7 +260,7 @@ function saver () {
 function set_account_before_running_heroku_command () {
   # Switch Heroku account
   switch;
-  
+
   # Then run heroku command as intended
   /usr/local/bin/heroku "$@";
 }
