@@ -171,7 +171,8 @@ if [ "$UPDATE" = true ]; then
   # Ruby
   echo "\nRUBY"
   link $dotfiles/ruby/gemrc $HOME/.gemrc
-  
+  link $dotfiles/ruby/gemrc $HOME/.irbrc
+
   # Remove old files
   echo "\nCLEANUP"
   remove $HOME/.applescript/finder.resize.applescript
