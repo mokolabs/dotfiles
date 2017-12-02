@@ -271,7 +271,9 @@ function set_account_before_running_heroku_command () {
 # Launch Ruby apps
 function start {
   # Modern Ruby apps with a Procfile
-  if [ -e ./Procfile ]; then
+  if [ -e ./Procfile.dev ]; then
+    bundle exec foreman start -f Procfile.dev
+  elif [ -e ./Procfile ]; then
     bundle exec foreman start
   # Sinatra apps named app.rb
   elif [ -e ./app.rb ]; then
