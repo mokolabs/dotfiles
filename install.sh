@@ -171,7 +171,7 @@ if [ "$UPDATE" = true ]; then
   # Ruby
   echo "\nRUBY"
   link $dotfiles/ruby/gemrc $HOME/.gemrc
-  link $dotfiles/ruby/gemrc $HOME/.irbrc
+  link $dotfiles/ruby/irbrc $HOME/.irbrc
 
   # Remove old files
   echo "\nCLEANUP"
