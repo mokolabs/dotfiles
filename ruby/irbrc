@@ -1,3 +1,4 @@
 require 'rubygems'
 
 IRB.conf[:SAVE_HISTORY] = 1000
+IRB.conf[:BACK_TRACE_LIMIT] = 50
