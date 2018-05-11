@@ -11,23 +11,34 @@
 
 // TABS
 .tab-bar {
-  
+
   // Hide tab bar if no tabs are present
   li:only-child {
-    display: none !important;
+    display: none;
   }
 
   // Increase tab text size
   .title {
     font-size: 12px;
   }
-  
+
+  // Show project header tab
+  li[data-type="TreeView"] {
+    background: #eee !important;
+    display: block !important;
+    height: 41px;
+    padding-bottom: 8px !important;
+    .title {
+      color: #eee;
+    }
+  }
+
 }
 
 
 // EDITOR
 atom-text-editor {
- 
+
   // SCROLL VIEW
   .scroll-view {
 
@@ -38,12 +49,12 @@ atom-text-editor {
     & > div {
       padding-left: 12px;
     }
-    
+
     // Selected text should be dark gray
     .selection .region {
       background-color: #222 !important;
     }
-    
+
   }
 
   // GUTTER
@@ -56,25 +67,26 @@ atom-text-editor {
   .gutter {
     // Change background to match theme
     background-color: #eee;
-    
+
     // Push line numbers down
     margin-top: 6px;
-    
+
     // Tweak line number styles
     .line-number {
-      
+
        // Darken text
        color: #888;
-       
+
        // Increase text opacity
        opacity: 1;
 
        // Highlight selected line
        &.cursor-line {
-         background: linear-gradient(to right, #eee, #428BDD);
+         color: #333;
+         background: #ccc;
          opacity: 0.8;
        }
-       
+
        // Disable code folding
        .icon-right {
          opacity: 0 !important;
@@ -83,13 +95,14 @@ atom-text-editor {
        }
      }
   }
-  
+
 }
 
 
 // TREE VIEW
 .tree-view {
-
+  margin-top: -24px;
+  
   // Tweak background color
   background: #eee;
   
@@ -113,11 +126,6 @@ atom-text-editor {
    }
   }
   
-  // Lighten list item text color
-  .directory .entries {
-    color: #777;
-  }
-  
   // Hide file directory icons
   .icon-file-directory::before {
     content: none;
@@ -129,7 +137,6 @@ atom-text-editor {
   }
   
   // Tweak project root top margin
-  margin-top: -8px;
   .project-root:first-child {
     margin-top: 8px;
   }
@@ -137,11 +144,6 @@ atom-text-editor {
   // Tweak space between project root and entries
   &.list-tree.has-collapsable-children .project-root.list-nested-item > .list-item {
     padding-bottom: 0px;
-  }
-  
-  // Add more space below project root header
-  .project-root-header {
-    margin-bottom: 1px;
   }
   
   // Align project root header with directory list
@@ -157,21 +159,34 @@ atom-text-editor {
 }
 
 
-// TREE VIEW (README TWEAKS)
-.tree-view {
+// TREE VIEW (PROJECT HEADER / README TWEAKS)
+.atom-dock-open .tree-view {
+  
+  // Replace project panel with app directory
+  .project-root-header {
+    color: #777 !important;
+    border-bottom: 1px solid #ccc;
+    margin-left: -6px;
+    margin-right: -12px;
+    margin-top: -24px;
+    background: #eee;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    opacity: 1;
+  }
   
   // Move README files to the top of tree view
   .entry .name[data-name="README"],
   .entry .name[data-name="README.md"] {
-    border-bottom: 1px solid #ccc;
+    color: #777 !important;
+    min-width: 275px;
     padding-right: 6px;
-    padding-top: 8px;
-    position: absolute;
+    position: fixed;
     right: 0;
     text-align: right;
     top: 0;
-    width: 110%;
-    z-index: 100;
+    z-index: 101;
   }
 
   // Tweak README right padding for READMEs with no file extension
@@ -295,9 +310,19 @@ atom-panel.bottom {
 .is-blurred {
   .gutter,
   .scroll-view,
-  .tree-view,
   .bottom,
   .tab-bar {
     opacity: 0.7;
+  }
+  .atom-dock-open {
+    .tab-bar {
+      opacity: 1;
+    }
+    .icon-repo {
+      opacity: 0.7;
+    }
+    .entry .name {
+      opacity: 0.7;
+    }
   }
 }
