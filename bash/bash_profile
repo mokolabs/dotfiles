@@ -108,24 +108,24 @@ done
 alias heroku=set_account_before_running_heroku_command;
 
 # Open current directory in Atom (via a)
-function a() {
+function a () {
   /usr/local/bin/atom $PWD
   osascript ~/.dotfiles/applescript/atom.group.applescript
 }
 
 # Clear development logs before launching app
-function clear_logs() {
+function clear_logs () {
   test -f log/development.log && :> log/development.log
 }
 
 # Open current directory in Atom (via go)
-function go() {
+function go () {
   /usr/local/bin/atom $PWD
   osascript ~/.dotfiles/applescript/atom.group.applescript
 }
 
 # Reset WiFi connection
-function bounce() {
+function bounce () {
   if [ "$1" == "bluetooth" ] || [ "$1" == "blue" ]; then
     /usr/local/bin/blueutil off; /usr/local/bin/blueutil on
   else
@@ -275,7 +275,7 @@ function set_account_before_running_heroku_command () {
 }
 
 # Launch Ruby apps
-function start {
+function start () {
   clear_logs;
 
   # Modern Ruby apps with a Procfile
