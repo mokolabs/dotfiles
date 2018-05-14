@@ -113,6 +113,11 @@ function a() {
   osascript ~/.dotfiles/applescript/atom.group.applescript
 }
 
+# Clear development logs before launching app
+function clear_logs() {
+  test -f log/development.log && :> log/development.log
+}
+
 # Open current directory in Atom (via go)
 function go() {
   /usr/local/bin/atom $PWD
@@ -271,6 +276,8 @@ function set_account_before_running_heroku_command () {
 
 # Launch Ruby apps
 function start {
+  clear_logs;
+
   # Modern Ruby apps with a Procfile
   if [ -e ./Procfile.dev ]; then
     bundle exec foreman start -f Procfile.dev
