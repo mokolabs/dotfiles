@@ -140,14 +140,17 @@ function cd () {
   # Always run default cd command
   builtin cd "$@";
 
-  # Switch Heroku accounts (if needed)
-
-  # Switch Heroku accounts when navigating directories within ~Sites
-  if [[ "$PWD" =~ Sites ]]; then
-    switch;
-  # Switch Heroku accounts when changing to a directory within ~Sites
-  elif [[ "$1" =~ Sites ]]; then
-    switch;
+  # Switch Heroku account (if needed)
+  # ... when navigating within ~Sites
+  # ... or when target is within ~Sites
+  if [[ "$1" =~ Sites || "$PWD" =~ Sites ]]; then
+    # ... but ignore current directory
+    if [[ "$1" != "." ]]; then
+      # ... and only switch if target is a top-level repo
+      if [[ "$1 | grep '/' -o | wc -l" < 4 ]]; then
+        switch;
+      fi
+    fi
   fi
 
   # Run optional actions if second argument is present
