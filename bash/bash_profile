@@ -82,6 +82,7 @@ alias show="git show"
 alias stash="git stash"
 alias status="git status"
 alias diffc="git diff --cached"
+alias diffs="git diff --staged"
 
 # Aliases (backup)
 alias backup="cd ~/Library/Backup/Scripts"
