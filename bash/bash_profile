@@ -100,7 +100,13 @@ alias crowley="cd ~/Sites/crowleyportraits"
 alias g="cd ~/Sites/graffletopia"
 alias graffle="cd ~/Sites/graffletopia"
 alias moko="cd ~/Sites/mokolabs"
-for a in `cd ~/Sites; ls | grep -Ev "heroku"`; do
+
+# Aliases (web apps)
+for a in `cd ~/Sites; ls | grep -Ev "heroku" | grep -Ev " "`; do
+  # Alias apps located in ~/Sites but exclude apps
+  # ... that aren't in the top level of ~/Sites
+  # ... that contain the word 'heroku'
+  # ... that contain a space
   alias "$a=cd ~/Sites/$a";
   complete -F _complete_alias $a;
 done
