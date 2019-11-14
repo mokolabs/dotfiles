@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Add Homebrew to PATH
 export PATH="/usr/local/sbin:$PATH"
 
@@ -6,6 +8,9 @@ export PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH"
 
 # Add SSL to PATH
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# Add MySQL to PATH
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 # Set X11 display
 export DISPLAY=:0.0
@@ -17,14 +22,14 @@ export PS1="\h:\w \$(get_git_branch)$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-# Use case insensitivity for tab completion
-bind "set completion-ignore-case on"
-
-# Open gems with Atom
-export GEM_OPEN_EDITOR=atom
+# Open gems with Code
+export GEM_OPEN_EDITOR=code
 
 # Edit with nano
 export EDITOR=nano
+
+# Use case insensitivity for tab completion
+bind "set completion-ignore-case on"
 
 # Simplify rake command
 rake() {
@@ -57,7 +62,7 @@ HISTFILESIZE=1000           # Store up to 1000 commands in history file
 alias desktop="cd ~/Desktop"
 alias dots="cd ~/.dotfiles"
 alias dotfiles="cd ~/.dotfiles"
-alias setup="/usr/local/bin/atom ~/Dropbox/Config/Setup/; osascript ~/.applescript/atom.group.applescript"
+alias setup="/usr/local/bin/code ~/Dropbox/Config/Setup/; osascript ~/.applescript/code.group.applescript"
 alias reload="source ~/.bash_profile"
 alias reset="source ~/.bash_profile"
 alias update="sh ~/.dotfiles/install.sh force; reload; clear;"
@@ -114,21 +119,27 @@ done
 # Aliases (heroku)
 alias heroku=set_account_before_running_heroku_command;
 
-# Open current directory in Atom (via a)
-function a () {
+# Aliases (atom)
+alias atom=open_in_atom_and_maximize_window;
+
+# Aliases (code)
+alias code=open_in_code_and_maximize_window;
+
+# Open current directory in Atom (and maximize window)
+function open_in_atom_and_maximize_window () {
   /usr/local/bin/atom $PWD
   osascript ~/.dotfiles/applescript/atom.group.applescript
+}
+
+# Open current directory in Code (and maximize window)
+function open_in_code_and_maximize_window () {
+  /usr/local/bin/code $PWD
+  osascript ~/.dotfiles/applescript/code.group.applescript
 }
 
 # Clear development logs before launching app
 function clear_logs () {
   test -f log/development.log && :> log/development.log
-}
-
-# Open current directory in Atom (via go)
-function go () {
-  /usr/local/bin/atom $PWD
-  osascript ~/.dotfiles/applescript/atom.group.applescript
 }
 
 # Reset WiFi connection
@@ -166,9 +177,9 @@ function cd () {
   if [[ "$2" == "s" ]]; then
     clear;
     start;
-  # Open directory in Atom
+  # Open directory in Code
   elif [[ "$2" == "a" ]]; then
-    a;
+    open_in_code_and_maximize_window;
   # Clear previous terminal output
   elif [[ "$2" == "c" ]]; then
     clear;
