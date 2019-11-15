@@ -211,20 +211,7 @@ if [ "$UPDATE" = true ]; then
       
       # Sound
       add_task "sound"
-      
-      # Wifi
-      add_task "wifi"
 
-      # Homebridge
-      tput cuu1
-      echo "\nInstall tasks for Homebridge? (y/n)"
-      read -s input                   
-      if [ "$input" == "y" ] || [ "$input" == "yes" ]; then
-        add_task "homebridge"
-      else
-        skip_task "homebridge"
-      fi
-      
       # Database
       tput cuu1
       echo "\nInstall tasks for database? (y/n)"
