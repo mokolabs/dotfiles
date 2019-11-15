@@ -127,14 +127,18 @@ alias code=open_in_code_and_maximize_window;
 
 # Open current directory in Atom (and maximize window)
 function open_in_atom_and_maximize_window () {
-  /usr/local/bin/atom $PWD
+  /usr/local/bin/atom "$@"
+  if [[ "$1" == "." ]]; then
   osascript ~/.dotfiles/applescript/atom.group.applescript
+  fi
 }
 
 # Open current directory in Code (and maximize window)
 function open_in_code_and_maximize_window () {
-  /usr/local/bin/code $PWD
-  osascript ~/.dotfiles/applescript/code.group.applescript
+  /usr/local/bin/code "$@"
+  if [[ "$1" == "." ]]; then
+    osascript ~/.dotfiles/applescript/code.group.applescript
+  fi
 }
 
 # Clear development logs before launching app
