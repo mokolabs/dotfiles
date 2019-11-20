@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Silence deprecation warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Add Homebrew to PATH
 export PATH="/usr/local/sbin:$PATH"
 
@@ -200,17 +203,6 @@ function diff () {
     git diff "$@"
   else
     /usr/bin/diff "$@"
-  fi
-}
-
-# Remove (or restore) dropbox up-to-date checkmark icons
-function dropbox () {
-  if [[ "$1" == "restore" ]]; then
-    mv /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns.bak /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/Resources/overlay-uptodate.icns && killall Finder
-  elif [[ "$1" == "remove" ]]; then
-    sh ~/.dropbox.remover.sh
-  else
-    sh ~/.dropbox.remover.sh
   fi
 }
 
