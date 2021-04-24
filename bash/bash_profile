@@ -10,7 +10,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH"
 
 # Add SSL to PATH
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # Add MySQL to PATH
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
@@ -28,8 +28,11 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 # Open gems with Code
 export GEM_OPEN_EDITOR=code
 
-# Edit with nano
-export EDITOR=nano
+# Edit with VS Code
+export EDITOR="vscode://file/%{file}:%{line}"
+
+# Ignore Ruby 2.7 deprecation messages
+export RUBYOPT='-W:no-deprecated -W:no-experimental'
 
 # Use case insensitivity for tab completion
 bind "set completion-ignore-case on"
@@ -89,6 +92,7 @@ alias .....='cd ../../../..'
 
 # Aliases (git)
 alias add="git add"
+alias blame="git blame"
 alias branch="git branch"
 alias checkout="git checkout"
 alias commit="git commit"
